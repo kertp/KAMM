@@ -1,4 +1,4 @@
-package ee.ut.math.tvt.kamm;
+package src.ee.ut.math.tvt.kamm;
 
 import java.awt.*;
 import javax.swing.*;
