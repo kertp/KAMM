@@ -1,35 +1,42 @@
 package ee.ut.math.tvt.kamm;
 
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.io.InputStream;
 
 public class Intro {
-	
+	// �laskdhtgolhgoeirg
 	
 	public void display(){
-	    JFrame raam = new JFrame("JFrame"); // raami loomine
-	    raam.setSize(800, 800); // 
-	    raam.setLocation(100, 100); // 
-	    
-	    JLabel tiim = new JLabel("VÕISTKOND KAMM: Anti Ingel, Kert Pjatkin, Merlin Saulep, Harri Saar");
-	    tiim.setFont(new Font("Serif", Font.PLAIN, 20));
-	    raam.add(tiim);
-
-	    raam.add(tiim);
-	    
-	    raam.setSize(230, 230);
-
-	    raam.setVisible(true); 
+		//load a properties file from class path, inside static method
+		Properties prop = new Properties();
+		try{
+		InputStream in = getClass().getResourceAsStream("/version.properties");
+		prop.load(in);
+		in.close();
+		System.out.println(prop.get("major"));
+		  ImageIcon guy = new ImageIcon("lib/pictures/kamm.png");
+		  JLabel pn = new JLabel(guy);
+		  JPanel panel = new JPanel();
+		  JFrame raam = new JFrame("JFrame");
+		  raam.setLayout(new FlowLayout());
+		  raam.setSize(700,500);
+		  raam.add(new JLabel(new ImageIcon("lib/pictures/kamm.png")));
+		  JLabel tiim = new JLabel("VÕISTKOND KAMM: Anti Ingel, Kert Pjatkin, Merlin Saulep, Harri Saar");
+		  tiim.setFont(new Font("Serif", Font.PLAIN, 20));
+		  raam.add(tiim);
+		  raam.setVisible(true);
+		}catch(IOException e){
+			
+		}
 	}
 }
