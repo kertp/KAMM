@@ -14,7 +14,7 @@ import java.util.Properties;
 import java.io.InputStream;
 
 public class Intro {
-	
+	// ölaskdhtgolhgoeirg
 	
 	public void display(){
 		//load a properties file from class path, inside static method
