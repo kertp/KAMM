@@ -1,60 +1,59 @@
 <project name="KAMM" default="dist" basedir=".">
-    <description>
-        simple example build file
-    </description>
-  <!-- set global properties for this build -->
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-	<property name="build.classes" value="${build}/classes"/>
-  <property name="dist"  location="dist"/>
-  <property name="main"  location="Intro"/>
-	
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="build.classes" value="${build}/classes" />
+	<property name="dist" location="dist" />
+	<property name="main" location="Intro" />
+
 	<path id="compile.classpath">
-			<fileset dir="lib">
-				<include name="*.jar"/>
-			</fileset>
-		</path>
-
-  <target name="init">
-    <!-- Create the time stamp -->
-    <tstamp/>
-    <!-- Create the build directory structure used by compile -->
-    <mkdir dir="${build}"/>
-  </target>
-
-  <target name="build" depends="init"
-        description="compile the source " >
-    <!-- Compile the java code from ${src} into ${build} -->
-    <javac srcdir="${src}" destdir="${build}"/>
-  </target>
-
-  <target name="dist" depends="build"
-        description="generate the distribution" >
-  	<propertyfile file="version.properties" comment="build number">
-  		<entry key="build.revision.number" type="int" operation="+">
-  	</propertyfile>
-    <!-- Create the distribution directory -->
-    <mkdir dir="${dist}/jar"/>
-
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/kamm.jar" basedir="${build}"/>
-  </target>
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
 	
-	<target name="jrun" description="Run jar file">
+	<path id="kamm.classpath">
+		<pathelement location="${build.classes.dir}"/>
+		<!-- configuration -->
+		<pathelement location="${conf.dir}"/>
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
 
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="build" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}" />
+	</target>
+
+	<target name="dist" depends="build" description="generate the distribution">
+		<propertyfile file="version.properties" comment="Build Number for ANT.">
+			<entry key="build.revision.number" type="int" operation="+" default="1" />
+		</propertyfile>
+		<jar jarfile="${build}/jar/kamm.jar" basedir="${build}" includes="application.properties version.properties lib/pictures/kamm.png">
+		</jar>
+	</target>
+
+	<target name="jrun" description="Run jar file">
+		<exec executable="cmd.exe" dir="\${build}\jar"><arg line="/c explorer ." />
+		</exec>
 	</target>
 	
- <!-- execute the program with the fully qualified name in ${build.dir} -->
-  <target name="run" description="run the project" depends="build">
-    <java dir="build\ee\ut\math\tvt\kamm" classname="Intro.class" fork="yes">
-    </java>
-  </target>
+	<target name="run" depends="dist" description="Run the application">
+		<java classname="ee.ut.math.tvt.kamm.Intro" classpathref="kamm.classpath" fork="yes" />
+	</target>
 
-  <target name="clean"
-        description="clean up" >
-    <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
-  </target>
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
 
 </project>
