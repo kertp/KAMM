@@ -30,8 +30,9 @@
 
   <target name="dist" depends="build"
         description="generate the distribution" >
-  	<loadproperties srcFile="version.properties" resource="build.revision"/>
-  	
+  	<propertyfile file="version.properties" comment="build number">
+  		<entry key="build.revision.number" type="int" operation="+">
+  	</propertyfile>
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}/jar"/>
 
@@ -40,7 +41,7 @@
   </target>
 	
 	<target name="jrun" description="Run jar file">
-		
+
 	</target>
 	
  <!-- execute the program with the fully qualified name in ${build.dir} -->
