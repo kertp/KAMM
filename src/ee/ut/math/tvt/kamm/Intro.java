@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 public class Intro {
-	
+	// ölaskdhtgolhgoeirg
 	
 	public void display(){
 	    JFrame raam = new JFrame("JFrame"); // raami loomine
