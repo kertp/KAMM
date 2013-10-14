@@ -6,6 +6,7 @@
   <property name="src" location="src"/>
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
+  <property name="main"  location="Intro"/>
 
   <target name="init">
     <!-- Create the time stamp -->
@@ -27,6 +28,12 @@
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
     <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+	
+ <!-- execute the program with the fully qualified name in ${build.dir} -->
+  <target name="run" description="run the project">
+    <java dir="${build}/ee/ut/math/tvt/kamm" classname="IntroUI" fork="yes">
+    </java>
   </target>
 
   <target name="clean"
