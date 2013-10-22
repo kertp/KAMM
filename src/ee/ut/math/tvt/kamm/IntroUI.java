@@ -22,9 +22,9 @@ public class IntroUI {
 			raam.setLayout(new GridLayout(6, 1));
 			raam.setSize(700, 500);
 			JLabel versioon = new JLabel("Version: "
-					+ vers.getProperty("build.revision.number") + "."
+					+ vers.getProperty("build.major.number") + "."
 					+ vers.getProperty("build.minor.number") + "."
-					+ vers.getProperty("build.major.number"));
+					+ vers.getProperty("build.revision.number"));
 			JLabel tiimi_nimi = new JLabel("Team name: "
 					+ prop.getProperty("Team.name"));
 			JLabel liider = new JLabel("Team leader: "
