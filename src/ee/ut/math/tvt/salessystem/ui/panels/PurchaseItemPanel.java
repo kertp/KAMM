@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -11,8 +12,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.NoSuchElementException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +35,7 @@ public class PurchaseItemPanel extends JPanel {
     private JTextField quantityField;
     private JTextField nameField;
     private JTextField priceField;
+    private JComboBox <String> productMenu;
 
     private JButton addItemButton;
 
@@ -78,7 +82,7 @@ public class PurchaseItemPanel extends JPanel {
 
         // Create the panel
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 2));
+        panel.setLayout(new GridLayout(6, 2));
         panel.setBorder(BorderFactory.createTitledBorder("Product"));
 
         // Initialize the textfields
@@ -86,6 +90,8 @@ public class PurchaseItemPanel extends JPanel {
         quantityField = new JTextField("1");
         nameField = new JTextField();
         priceField = new JTextField();
+        
+        productMenu = new JComboBox<String>();
 
         // Fill the dialog fields if the bar code text field loses focus
         barCodeField.addFocusListener(new FocusListener() {
@@ -102,6 +108,10 @@ public class PurchaseItemPanel extends JPanel {
 
         // == Add components to the panel
 
+        panel.add(new JLabel("Products"));
+        panel.add(productMenu);
+        
+        
         // - bar code
         panel.add(new JLabel("Bar code:"));
         panel.add(barCodeField);
@@ -136,6 +146,7 @@ public class PurchaseItemPanel extends JPanel {
         StockItem stockItem = getStockItemByBarcode();
 
         if (stockItem != null) {
+        	barCodeField.setText(String.valueOf(stockItem.getId()));
             nameField.setText(stockItem.getName());
             String priceString = String.valueOf(stockItem.getPrice());
             priceField.setText(priceString);
