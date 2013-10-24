@@ -16,15 +16,13 @@
 	    <attribute name="command" />
 	    <attribute name="options" default="" />
 	    <attribute name="dir" default="" />
-	    <attribute name="failerror" default="false" />
 	    <element name="args" optional="true" />
 	    <sequential>
-	            <echo message="git dir @{dir}" />
-	            <echo message="git @{command}" />
-	            <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
-	                    <arg line="@{command} @{options}" />
-	                    <args />
-	            </exec>
+            <echo message="git @{command}" />
+            <exec executable="git" dir="@{dir}">
+                <arg line="@{command} @{options}" />
+                <args />
+            </exec>
 	    </sequential>
     </macrodef>
 	
