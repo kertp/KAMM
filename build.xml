@@ -39,7 +39,7 @@
 	                    <arg value="-am ${message}" />
 	            </args>
 	        </git>
-	    	<git command="push" dir="@{dir}" options="@{options}">
+	    	<git command="push" dir="@{dir}">
 	            <args>
                 	<arg value="-u origin master" />
 	            </args>
