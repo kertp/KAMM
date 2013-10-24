@@ -4,15 +4,23 @@ import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -165,7 +173,46 @@ public class PurchaseTab {
 
   /** Event handler for the <code>submit purchase</code> event. */
   protected void submitPurchaseButtonClicked() {
-    log.info("Sale complete");
+	  //siia paying aken
+	  JFrame raam = new JFrame("Paying");
+	  raam.setLayout(new GridLayout(5, 2));
+	  raam.setSize(300, 300); // 
+	  raam.setLocation(100, 100); // 
+	  raam.setVisible(true);
+	  JTextField money = new JTextField();
+	  JTextField money1 = new JTextField();
+	  JTextField money2 = new JTextField();
+	  JButton confirm = new JButton("Confirm");
+	  JButton cancel = new JButton("Cancel");
+	  raam.add( new JLabel ("Total sum of order: "));
+	  raam.add( new JLabel ("45"));
+	  raam.add( new JLabel ("Klient andis "));
+	  
+	  raam.add( new JLabel ("Tagastusraha "));
+	  raam.add( new JLabel ("23"));
+	 
+	  confirm.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              ;
+          }
+      });
+	  cancel.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              ;
+          }
+      });
+	  money.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              ;
+          }
+      });
+	  raam.add(cancel);
+	  raam.add(confirm);
+	  raam.add (money);
+	  //System.out.println(a.getText());
+	  
+	  //JOptionPane.showInputDialog(null, "Total");
+	  log.info("Sale complete");
     try {
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
