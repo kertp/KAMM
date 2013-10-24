@@ -36,12 +36,12 @@
 	 	<attribute name="files" default="." />
 	    <sequential>
 	    	<echo message="Git commit with message ${message}" />
-	        <git command="commit" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
+	        <git command="commit" dir="@{dir}" options="@{options}">
 	            <args>
 	                    <arg value="-am @{message}" />
 	            </args>
 	        </git>
-	    	<git command="push" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
+	    	<git command="push" dir="@{dir}" options="@{options}">
 	            <args>
                 	<arg value="-u origin master" />
 	            </args>
