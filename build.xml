@@ -12,6 +12,53 @@
 		</fileset>
 	</path>
 	
+	<macrodef name = "git">
+	    <attribute name = "command" />
+	    <attribute name = "dir" default = "" />
+	    <element name = "args" optional = "true" />
+	    <sequential>
+	        <echo message = "git @{command}" />
+	        <exec executable = "git" dir = "@{dir}">
+	            <arg value = "@{command}" />
+	            <args/>
+	        </exec>
+	    </sequential>
+	</macrodef>
+	
+	<macrodef name="git">
+	    <attribute name="command" />
+	    <attribute name="options" default="" />
+	    <attribute name="dir" default="" />
+	    <element name="args" optional="true" />
+	    <sequential>
+            <echo message="git dir @{dir}" />
+            <echo message="git @{command}" />
+            <exec executable="git" dir="@{dir}">
+                    <arg line="@{command} @{options}" />
+                    <args />
+            </exec>
+	    </sequential>
+    </macrodef>
+	
+	<macrodef name = "git-publish">
+	    <attribute name = "comment" />
+		<attribute name = "files" default = "." />
+	    <sequential>
+	        <git command = "add .">
+	            <args>
+	                <arg value = "@{files}" />
+	            </args>
+	        </git>
+	        <git command = "commit">
+	        	<args>
+   		             <arg value = "@{comment}" />
+	            </args>
+	        </git>
+	    	
+	    	<git command = "push -u origin master"/>
+	    </sequential>
+	</macrodef>
+	
 	<path id="kamm.classpath">
 		<pathelement location="${build.classes.dir}"/>
 		<!-- configuration -->
@@ -61,5 +108,12 @@
 			<arg value="console" />
 		</java>
 	</target>
+	
+	
+	<target name="git-publish">
+		<git-publish comment="jee" />
+	</target>
+	
+	
 
 </project>
