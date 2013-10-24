@@ -12,52 +12,43 @@
 		</fileset>
 	</path>
 	
-	<macrodef name = "git">
-	    <attribute name = "command" />
-	    <attribute name = "dir" default = "" />
-	    <element name = "args" optional = "true" />
-	    <sequential>
-	        <echo message = "git @{command}" />
-	        <exec executable = "git" dir = "@{dir}">
-	            <arg value = "@{command}" />
-	            <args/>
-	        </exec>
-	    </sequential>
-	</macrodef>
-	
 	<macrodef name="git">
 	    <attribute name="command" />
 	    <attribute name="options" default="" />
 	    <attribute name="dir" default="" />
+	    <attribute name="failerror" default="false" />
 	    <element name="args" optional="true" />
 	    <sequential>
-            <echo message="git dir @{dir}" />
-            <echo message="git @{command}" />
-            <exec executable="git" dir="@{dir}">
-                    <arg line="@{command} @{options}" />
-                    <args />
-            </exec>
+	            <echo message="git dir @{dir}" />
+	            <echo message="git @{command}" />
+	            <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
+	                    <arg line="@{command} @{options}" />
+	                    <args />
+	            </exec>
 	    </sequential>
     </macrodef>
 	
-	<macrodef name = "git-publish">
-	    <attribute name = "comment" />
-		<attribute name = "files" default = "." />
+	 <macrodef name="git-publish">
+	    <attribute name="message" />
+	    <attribute name="dir" default = ""/>
+	    <attribute name="options" default="" />
+	    <attribute name="failerror" default="false" />
+	 	<attribute name="files" default="." />
 	    <sequential>
-	        <git command = "add .">
+	    	<echo message="Git commit with message ${message}" />
+	        <git command="commit" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 	            <args>
-	                <arg value = "@{files}" />
-	            </args>
-	        </git>
-	        <git command = "commit">
-	        	<args>
-   		             <arg value = "@{comment}" />
+	                    <arg value="-am @{message}" />
 	            </args>
 	        </git>
 	    	
-	    	<git command = "push -u origin master"/>
+	    	<git command="add" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
+	            <args>
+	                    <arg value="@{files}" />
+	            </args>
+	        </git>
 	    </sequential>
-	</macrodef>
+    </macrodef>
 	
 	<path id="kamm.classpath">
 		<pathelement location="${build.classes.dir}"/>
@@ -111,7 +102,7 @@
 	
 	
 	<target name="git-publish">
-		<git-publish comment="jee" />
+		<git-publish message="@{message}"/>
 	</target>
 	
 	
