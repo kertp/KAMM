@@ -179,18 +179,19 @@ public class PurchaseTab {
 	  raam.setSize(300, 300); // 
 	  raam.setLocation(100, 100); // 
 	  raam.setVisible(true);
-	  JTextField money = new JTextField();
-	  JTextField money1 = new JTextField();
-	  JTextField money2 = new JTextField();
+	  JTextField total = new JTextField();
+	  JTextField paid = new JTextField();
+	  JTextField change = new JTextField();
 	  JButton confirm = new JButton("Confirm");
 	  JButton cancel = new JButton("Cancel");
-	  raam.add( new JLabel ("Total  of order: "));
-	  raam.add( new JLabel ("45"));
+	  raam.add( new JLabel ("Total sum of order: "));
+	  raam.add(total);
 	  raam.add( new JLabel ("Klient andis "));
-	  
+	  raam.add(paid);
 	  raam.add( new JLabel ("Tagastusraha "));
-	  raam.add( new JLabel ("23"));
-	 
+	  raam.add(change);
+	  total.setEditable(false);
+	  change.setEditable(false);
 	  confirm.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
               ;
@@ -201,14 +202,13 @@ public class PurchaseTab {
               ;
           }
       });
-	  money.addActionListener(new ActionListener() {
+	  paid.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-              ;
+              //change.setText(paid.getText()-total.getText());;
           }
       });
 	  raam.add(cancel);
 	  raam.add(confirm);
-	  raam.add (money);
 	  //System.out.println(a.getText());
 	  
 	  //JOptionPane.showInputDialog(null, "Total");
