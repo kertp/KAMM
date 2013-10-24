@@ -40,9 +40,6 @@
 	            </args>
 	        </git>
 	    	<git command="push -u origin master">
-	            <args>
-                	<arg value="origin master" />
-	            </args>
 	        </git>
 	    </sequential>
     </macrodef>
