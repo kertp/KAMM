@@ -36,7 +36,7 @@
 	    	<echo message="Git commit with message ${message}" />
 	        <git command="commit" dir="@{dir}" options="@{options}">
 	            <args>
-	                    <arg value="-am @{message}" />
+	                    <arg value="-am ${message}" />
 	            </args>
 	        </git>
 	    	<git command="push" dir="@{dir}" options="@{options}">
