@@ -41,10 +41,9 @@
 	                    <arg value="-am @{message}" />
 	            </args>
 	        </git>
-	    	
-	    	<git command="add" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
+	    	<git command="push" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 	            <args>
-	                    <arg value="@{files}" />
+                	<arg value="-u origin master" />
 	            </args>
 	        </git>
 	    </sequential>
