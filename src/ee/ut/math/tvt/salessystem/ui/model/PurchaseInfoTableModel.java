@@ -14,7 +14,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
 	
 	public PurchaseInfoTableModel() {
-		super(new String[] { "Id", "Name", "Price", "Quantity"});
+		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
 	}
 
 	@Override
@@ -28,6 +28,8 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 			return item.getPrice();
 		case 3:
 			return item.getQuantity();
+		case 4:
+			return item.getSum();
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
@@ -60,7 +62,16 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
-        
+        //System.out.println(rows.get(0));
+    	/*for(int i = 0; i < getRowCount(); i++) {
+    		if (getValueAt(i, 0) == item.getId()) {
+    			int a = rows.get(i).getQuantity();
+    			item.setQuantity(item.getQuantity() + a);
+    			rows.remove(i);
+    			rows.add(item);
+    			return;
+    		}
+    	}*/
         rows.add(item);
         log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
         fireTableDataChanged();
