@@ -184,7 +184,7 @@ public class PurchaseTab {
 	  JTextField money2 = new JTextField();
 	  JButton confirm = new JButton("Confirm");
 	  JButton cancel = new JButton("Cancel");
-	  raam.add( new JLabel ("Total sum of order: "));
+	  raam.add( new JLabel ("Total  of order: "));
 	  raam.add( new JLabel ("45"));
 	  raam.add( new JLabel ("Klient andis "));
 	  
