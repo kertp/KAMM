@@ -1,9 +1,10 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.ui.SalesSystemUI;
 
 /**
  * Purchase history details model.
@@ -57,21 +58,24 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
     /**
      * Add new StockItem to table.
      */
-    public void addItem(final SoldItem item) {
+    public void addItem(final SoldItem item, final int currentquantity) {
         /**
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
-        //System.out.println(rows.get(0));
-    	/*for(int i = 0; i < getRowCount(); i++) {
-    		if (getValueAt(i, 0) == item.getId()) {
+    	for(int i = 0; i < getRowCount(); i++) {
+    		if (getValueAt(i, 0) == (item.getId())) {
     			int a = rows.get(i).getQuantity();
+    			int newquantity = item.getQuantity() + a;
+    			if (currentquantity < newquantity) {
+    				JOptionPane.showMessageDialog(null, "Not enough stock!");
+    				return;
+    			}
     			item.setQuantity(item.getQuantity() + a);
     			rows.remove(i);
-    			rows.add(item);
-    			return;
+    			break;
     		}
-    	}*/
+    	}
         rows.add(item);
         log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
         fireTableDataChanged();

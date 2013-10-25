@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -118,8 +117,9 @@ public class PurchaseItemPanel extends JPanel {
         panel.add(new JLabel("Products:"));
         panel.add(productMenu);
         productMenu.addItem("");
-        for(int i=0; i<model.getWarehouseTableModel().getRowCount(); i++)
+        for(int i=0; i<model.getWarehouseTableModel().getRowCount(); i++) {
         	productMenu.addItem(model.getWarehouseTableModel().getValueAt(i, 1).toString());
+        }
         
         // - amount
         panel.add(new JLabel("Amount:"));
@@ -179,12 +179,15 @@ public class PurchaseItemPanel extends JPanel {
     }*/
     private StockItem getStockItemByName() {
         try {
-            int index = productMenu.getSelectedIndex();
+            int comboindex = productMenu.getSelectedIndex()-1;
+            Long index = new Long(model.getWarehouseTableModel().getValueAt(comboindex, 0).toString());
             return model.getWarehouseTableModel().getItemById(index);
         } catch (NumberFormatException ex) {
             return null;
         } catch (NoSuchElementException ex) {
             return null;
+        } catch (IndexOutOfBoundsException ex) {
+        	return null;
         }
     }
 
@@ -196,16 +199,14 @@ public class PurchaseItemPanel extends JPanel {
         StockItem stockItem = getStockItemByName();
         if (stockItem != null) {
             int quantity;
+            int currentquantity = stockItem.getQuantity();
             try {
                 quantity = Integer.parseInt(quantityField.getText());
             } catch (NumberFormatException ex) {
                 quantity = 1;
             }
-            if(stockItem.getQuantity() < quantity)
-            	JOptionPane.showMessageDialog(null, "Not enough stock!");
-            else 
-            	model.getCurrentPurchaseTableModel()
-                	.addItem(new SoldItem(stockItem, quantity));
+            model.getCurrentPurchaseTableModel()
+                .addItem(new SoldItem(stockItem, quantity), currentquantity);
         }
     }
 
