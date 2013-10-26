@@ -1,8 +1,11 @@
 package ee.ut.math.tvt.kamm;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -10,22 +13,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class IntroUI {
+public class IntroUI extends JFrame{
 	
-	JFrame raam;
+	private JFrame raam = this;
 	
-	IntroUI(){
-		this.raam = new JFrame("JFrame");
-	}
+	/*IntroUI(){
+		this.raam = this;
+	}*/
 	
-	public JFrame display() throws IOException{
+	public JFrame display(){
 		// load a properties file from class path, inside static method
 		Properties prop = new Properties();
 		Properties vers = new Properties();
-		prop.load(new FileInputStream("application.properties"));
-		vers.load(new FileInputStream("version.properties"));
+		try {
+			prop.load(new FileInputStream("application.properties"));
+			vers.load(new FileInputStream("version.properties"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int width = 700;
+		int height= 500;
+	    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	    setLocation((screen.width - width) / 2, (screen.height - height) / 2);
 		raam.setLayout(new GridLayout(6, 1));
-		raam.setSize(700, 500);
+		raam.setSize(width, height);
 		JLabel versioon = new JLabel("Version: "
 				+ vers.getProperty("build.major.number") + "."
 				+ vers.getProperty("build.minor.number") + "."
@@ -56,7 +68,7 @@ public class IntroUI {
 		return raam;
 	}
 	
-	public void setVisible(boolean value){
+	/*public void setVisible(boolean value){
 //		return;
 		this.raam.setVisible(value);
 	}
@@ -64,6 +76,6 @@ public class IntroUI {
 	public void setAlwaysOnTop(boolean value){
 //		this.raam.setVisible(value);
 		return;
-	}
+	}*/
 
 }
