@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
+import ee.ut.math.tvt.kamm.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -185,6 +187,9 @@ public class PurchaseTab {
 						.getCurrentPurchaseTableModel().getTableRows());
 				endSale();
 				model.getCurrentPurchaseTableModel().clear();
+				model.getHistoryTableModel().populateWithData(domainController.loadHistory());
+				model.getHistoryTableModel().fireTableDataChanged();
+				System.out.println(model.getHistoryTableModel());
 			} catch (VerificationFailedException e1) {
 				log.error(e1.getMessage());
 			}

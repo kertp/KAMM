@@ -41,7 +41,7 @@ public class SubmittedPurchaseTableModel extends SalesSystemTableModel<Submitted
 		buffer.append("\n");
 
 		for (final SubmittedPurchase item : rows) {
-			buffer.append(item.getId() + "\t");
+			//buffer.append(item.getId() + "\t");
 			buffer.append(item.getDate() + "\t");
 			buffer.append(item.getTime() + "\t");
 			buffer.append(item.getTotal() + "\t");
