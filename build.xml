@@ -1,11 +1,5 @@
 <project name="KAMM" default="dist" basedir=".">
 	<!-- set global properties for this build -->
-	<property name="src" location="src" />
-	<property name="build" location="build" />
-	<property name="build.classes" value="${build}/classes" />
-	<property name="dist" location="dist" />
-	<property name="main" location="Intro" />
-	
 	<property file="build.properties"/>
 	<property name="build.dir" value="${basedir}/build"/>
 	<property name="build.classes.dir" value="${build.dir}/classes"/>
