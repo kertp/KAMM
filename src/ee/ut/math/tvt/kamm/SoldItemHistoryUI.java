@@ -29,15 +29,6 @@ public class SoldItemHistoryUI {
 	    this.panel = new JDialog(parent);
 	  }
 	  public void draw() {
-		  /*raam.setModal(true);
-			raam.setResizable(false);
-			raam.setSize(200, 200);
-			raam.add(new JTextField("tere hommikust"));
-			//Container parent = raam.getParent();
-			//raam.setLocation(parent.getLocationOnScreen().x+(parent.getWidth()-200)/2,
-			//		parent.getLocationOnScreen().y+(parent.getHeight()-200)/2);
-			raam.setVisible(true);*/
-	    //panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 	    GridBagLayout gb = new GridBagLayout();
 	    GridBagConstraints gc = new GridBagConstraints();
@@ -53,6 +44,7 @@ public class SoldItemHistoryUI {
 	    gc.fill = GridBagConstraints.BOTH;
 	    panel.add(drawStockMainPane(), gc);
 	    panel.setModal(true);
+	    panel.setSize(500, 250);
 	  }
 
 
@@ -81,10 +73,8 @@ public class SoldItemHistoryUI {
 	  }
 		public void setVisible(boolean b) {
 			if (b == true) {
-				panel.setLocation(parent.getLocationOnScreen().x+(parent.getWidth()-200)/2,
-						parent.getLocationOnScreen().y+(parent.getHeight()-200)/2);
-				//paid.grabFocus();
-				//paid.requestFocus();
+				panel.setLocation(parent.getLocationOnScreen().x+(parent.getWidth()-500)/2,
+						parent.getLocationOnScreen().y+(parent.getHeight()-250)/2);
 			}
 			panel.setVisible(b);
 		}

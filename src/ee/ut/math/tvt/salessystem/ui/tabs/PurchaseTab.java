@@ -172,30 +172,28 @@ public class PurchaseTab {
 
 	/** Event handler for the <code>submit purchase</code> event. */
 	protected void submitPurchaseButtonClicked() {
-		float sum = 0;
-		for (SoldItem item : model.getCurrentPurchaseTableModel().getTableRows())
-			sum += item.getSum();
-		submitWindow.setTotal(sum);
-		submitWindow.setPaid("");
-		submitWindow.setChange("");
-		submitWindow.setVisible(true);
-		if(submitWindow.isConfirmed()) {
-			log.info("Sale complete");
-			try {
-				log.debug("Contents of the current basket:\n"
-						+ model.getCurrentPurchaseTableModel());
-				domainController.submitCurrentPurchase(model
-						.getCurrentPurchaseTableModel().getTableRows());
-				endSale();
-				model.getHistoryTableModel().populateWithData(domainController.loadHistory());
-				model.getHistoryTableModel().fireTableDataChanged();
-				//System.out.println(model.getHistoryTableModel());
-				model.getSoldItemHistoryModel().populateWithData(model.getCurrentPurchaseTableModel().getTableRows());
-				model.getSoldItemHistoryModel().fireTableDataChanged();
-				System.out.println(model.getSoldItemHistoryModel());
-				model.getCurrentPurchaseTableModel().clear();
-			} catch (VerificationFailedException e1) {
-				log.error(e1.getMessage());
+		if (!model.getCurrentPurchaseTableModel().getTableRows().isEmpty()) {
+			float sum = 0;
+			for (SoldItem item : model.getCurrentPurchaseTableModel().getTableRows())
+				sum += item.getSum();
+			submitWindow.setTotal(sum);
+			submitWindow.setPaid("");
+			submitWindow.setChange("");
+			submitWindow.setVisible(true);
+			if(submitWindow.isConfirmed()) {
+				log.info("Sale complete");
+				try {
+					log.debug("Contents of the current basket:\n"
+							+ model.getCurrentPurchaseTableModel());
+					domainController.submitCurrentPurchase(model
+							.getCurrentPurchaseTableModel().getTableRows());
+					endSale();
+					model.getHistoryTableModel().populateWithData(domainController.loadHistory());
+					model.getHistoryTableModel().fireTableDataChanged();
+					model.getCurrentPurchaseTableModel().clear();
+				} catch (VerificationFailedException e1) {
+					log.error(e1.getMessage());
+				}
 			}
 		}
 	}
