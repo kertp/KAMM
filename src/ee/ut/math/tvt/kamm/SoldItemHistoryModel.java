@@ -1,10 +1,14 @@
 package ee.ut.math.tvt.kamm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemTableModel;
 
 public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
-
+	private static final long serialVersionUID = 1L;
+	
 	public SoldItemHistoryModel() {
 		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
 	}
@@ -45,6 +49,6 @@ public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
 		return buffer.toString();
 	}
 	public void addItem(final SoldItem soldItem) {
-		
+		rows.add(soldItem);
 	}
 }

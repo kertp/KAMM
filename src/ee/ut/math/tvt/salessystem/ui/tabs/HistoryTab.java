@@ -35,10 +35,14 @@ public class HistoryTab {
     // TODO - implement!
 	private SalesSystemModel model;
 	//private final SalesDomainController domainController;
+	
+	private SoldItemHistoryUI soldItemsWindow;
 
-    public HistoryTab(SalesSystemModel model) {
+    public HistoryTab(SalesSystemModel model, SoldItemHistoryUI soldItemsWindow) {
     	this.model = model;
+    	this.soldItemsWindow = soldItemsWindow;
     	//this.domainController = domainController;
+    	soldItemsWindow.draw();
     }
     public Component draw() {
         JPanel panel = new JPanel();
@@ -66,17 +70,16 @@ public class HistoryTab {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				SoldItemHistoryUI aken = new SoldItemHistoryUI();
 				// TODO Auto-generated method stub
 				int viewRow = table.getSelectedRow();
 				//System.out.println(viewRow);
 				//System.out.println(arg0.toString());
 				if (viewRow != -1 && arg0.getValueIsAdjusting() == false) {
-				for (SoldItem item : model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems()) {
-					System.out.println(item.getName() +" "+ item.getPrice() +" "+ item.getId() +" "+
-				item.getQuantity()+" "+item.getSum());
-					aken.draw();
-				}
+					for (SoldItem item : model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems()) {
+						System.out.println(item.getName() +" "+ item.getPrice() +" "+ item.getId() +" "+
+								item.getQuantity()+" "+item.getSum());
+					}
+					soldItemsWindow.setVisible(true);
 				}
 			}
         	
