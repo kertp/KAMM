@@ -16,6 +16,7 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 public class SalesDomainControllerImpl implements SalesDomainController {
 	
 	private List<SubmittedPurchase> purchaseList = new ArrayList<SubmittedPurchase>();
+	private List<List<SoldItem>> solditems;
 	
 	
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
