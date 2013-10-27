@@ -2,6 +2,7 @@ package ee.ut.math.tvt.kamm;
 
 import java.io.IOException;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
@@ -15,7 +16,7 @@ public class Intro {
 	private static final String MODE = "console";
 	
 	public static void main(String[] args) {
-	
+		BasicConfigurator.configure();
 		final SalesDomainController domainController = new SalesDomainControllerImpl();
 	
 		if (args.length == 1 && args[0].equals(MODE)) {
