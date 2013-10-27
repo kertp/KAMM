@@ -109,7 +109,7 @@
 	
 	<target name="run" depends="build" description="Run the template application">
 		<java
-		          classname="ee.ut.math.tvt.[team].Intro"
+		          classname="ee.ut.math.tvt.kamm.Intro"
 		            classpathref="test.classpath"
 		            fork="yes">
 		          <jvmarg value="-Xdebug" />
