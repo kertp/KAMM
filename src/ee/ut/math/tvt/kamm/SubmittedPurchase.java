@@ -23,7 +23,13 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 		this.total = total;
 		this.soldItems = soldItems;
 	}
+	public List<SoldItem> getSoldItems() {
+		return soldItems;
+	}
 
+	public void setSoldItems(List<SoldItem> soldItems) {
+		this.soldItems = soldItems;
+	}
 	public String getTime() {
 		return time;
 	}

@@ -12,7 +12,7 @@ import ee.ut.math.tvt.salessystem.ui.model.SalesSystemTableModel;
 public class SubmittedPurchaseTableModel extends SalesSystemTableModel<SubmittedPurchase> {
 	private static final long serialVersionUID = 1L;
 	
-	private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
+	private static final Logger log = Logger.getLogger(SubmittedPurchaseTableModel.class);
 	
 	public SubmittedPurchaseTableModel() {
 		super(new String[] {"Date", "Time", "Total"});
@@ -27,6 +27,8 @@ public class SubmittedPurchaseTableModel extends SalesSystemTableModel<Submitted
 			return item.getTime();
 		case 2:
 			return item.getTotal();
+		case 3:
+			return item.getSoldItems();
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}

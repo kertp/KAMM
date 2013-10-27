@@ -16,7 +16,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	private List<SoldItem> soldItems;
 	private List<List<SoldItem>> a;
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
-		System.out.println("Õiges kohas");
+		System.out.println("Oiges kohas");
 		soldItems.addAll(goods);
 		a.add(soldItems);
 		// Let's assume we have checked and found out that the buyer is underaged and

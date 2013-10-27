@@ -46,4 +46,7 @@ public class SalesSystemModel {
         return currentPurchaseTableModel;
     }
     
+    public SubmittedPurchaseTableModel getHistoryTableModel () {
+    	return historyTableModel;
+    }
 }

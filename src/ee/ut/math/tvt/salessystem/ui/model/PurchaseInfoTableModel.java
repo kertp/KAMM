@@ -61,38 +61,38 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
     /**
      * Add new StockItem to table.
      */
-    public void addItem(final SoldItem item, final int currentquantity) {
+    public void addItem(final SoldItem soldItem, final int stockquantity) {
         /**
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
-		/*try {
+		try {
 			SoldItem item = getItemById(soldItem.getId());
-			item.setQuantity(item.getQuantity() + soldItem.getQuantity());
-			log.debug("Found existing item " + soldItem.getName()
-					+ " increased quantity by " + soldItem.getQuantity());
+			int newquantity = item.getQuantity() + soldItem.getQuantity();
+			if (stockquantity < newquantity) {
+				JOptionPane.showMessageDialog(null, "Not enough stock!");
+				log.debug("Stock of " + soldItem.getName() + " is " + stockquantity +
+						". Cannot increase quantity to " + newquantity );
+			}
+			else {
+				item.setQuantity(item.getQuantity() + soldItem.getQuantity());
+				log.debug("Found existing item " + soldItem.getName()
+						+ " increased quantity by " + soldItem.getQuantity());
+				fireTableDataChanged();
+			}
 		}
 		catch (NoSuchElementException e) {
-			rows.add(soldItem);
-			log.debug("Added " + soldItem.getName()
-					+ " quantity of " + soldItem.getQuantity());
+			if (stockquantity < soldItem.getQuantity()) {
+				JOptionPane.showMessageDialog(null, "Not enough stock!");
+				log.debug("Stock of " + soldItem.getName() + " is " + stockquantity +
+						". Cannot add " + soldItem.getQuantity() + " items");
+			}
+			else {
+				rows.add(soldItem);
+				log.debug("Added " + soldItem.getName()
+						+ " quantity of " + soldItem.getQuantity());
+				fireTableDataChanged();
+			}
 		}
-		fireTableDataChanged();*/
-    	for(int i = 0; i < getRowCount(); i++) {
-    		if (getValueAt(i, 0) == (item.getId())) {
-    			int a = rows.get(i).getQuantity();
-    			int newquantity = item.getQuantity() + a;
-    			if (currentquantity < newquantity) {
-    				JOptionPane.showMessageDialog(null, "Not enough stock!");
-    				return;
-    			}
-    			item.setQuantity(item.getQuantity() + a);
-    			rows.remove(i);
-    			break;
-    		}
-    	}
-        rows.add(item);
-        log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
-        fireTableDataChanged();
     }
 }
