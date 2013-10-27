@@ -2,6 +2,7 @@
 	<!-- set global properties for this build -->
 	<property file="build.properties"/>
 	<property name="build.dir" value="${basedir}/build"/>
+	<property name="build.dr" value="${basedir}/build"/>
 	<property name="build.classes.dir" value="${build.dir}/classes"/>
 	<property name="src.dir" value="${basedir}/src"/>
 	<property name="dist.dir" value="${basedir}/dist"/>
