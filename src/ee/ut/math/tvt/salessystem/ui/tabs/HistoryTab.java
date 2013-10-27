@@ -15,8 +15,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
+import org.apache.log4j.Logger;
+
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 /**
@@ -25,6 +28,8 @@ import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
  */
 public class HistoryTab {
     
+	private static final Logger log = Logger.getLogger(HistoryTab.class);
+	
 	private JTable table;
     // TODO - implement!
 	private SalesSystemModel model;
@@ -62,8 +67,9 @@ public class HistoryTab {
 			public void valueChanged(ListSelectionEvent arg0) {
 				// TODO Auto-generated method stub
 				int viewRow = table.getSelectedRow();
-				System.out.println(viewRow);
-				if (viewRow != -1)
+				//System.out.println(viewRow);
+				//System.out.println(arg0.toString());
+				if (viewRow != -1 && arg0.getValueIsAdjusting() == false)
 				for (SoldItem item : model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems())
 					System.out.println(item.getName() +" "+ item.getPrice() +" "+ item.getId() +" "+
 				item.getQuantity()+" "+item.getSum());
