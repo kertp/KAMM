@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -186,10 +187,13 @@ public class PurchaseTab {
 				domainController.submitCurrentPurchase(model
 						.getCurrentPurchaseTableModel().getTableRows());
 				endSale();
-				model.getCurrentPurchaseTableModel().clear();
 				model.getHistoryTableModel().populateWithData(domainController.loadHistory());
 				model.getHistoryTableModel().fireTableDataChanged();
-				System.out.println(model.getHistoryTableModel());
+				//System.out.println(model.getHistoryTableModel());
+				model.getSoldItemHistoryModel().populateWithData(model.getCurrentPurchaseTableModel().getTableRows());
+				model.getSoldItemHistoryModel().fireTableDataChanged();
+				System.out.println(model.getSoldItemHistoryModel());
+				model.getCurrentPurchaseTableModel().clear();
 			} catch (VerificationFailedException e1) {
 				log.error(e1.getMessage());
 			}

@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui;
 
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
+import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -40,6 +41,7 @@ public class SalesSystemUI extends JFrame {
   private HistoryTab historyTab;
   private StockTab stockTab;
   private SubmitPurchaseUI submitWindow;
+  private SoldItemHistoryUI soldItemsWindow;
 
   /**
    * Constructs sales system GUI.
@@ -50,9 +52,10 @@ public class SalesSystemUI extends JFrame {
     this.model = new SalesSystemModel(domainController);
     
     submitWindow = new SubmitPurchaseUI(this);
+    soldItemsWindow = new SoldItemHistoryUI(model, this);
 
     // Create singleton instances of the tab classes
-    historyTab = new HistoryTab(model);
+    historyTab = new HistoryTab(model, soldItemsWindow);
     stockTab = new StockTab(model);
     purchaseTab = new PurchaseTab(domainController, model, submitWindow);
 

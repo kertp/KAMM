@@ -16,7 +16,7 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 public class SalesDomainControllerImpl implements SalesDomainController {
 	
 	private List<SubmittedPurchase> purchaseList = new ArrayList<SubmittedPurchase>();
-	private List<List<SoldItem>> solditems;
+	private List<SoldItem> solditems = new ArrayList<SoldItem>();
 	
 	
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
@@ -24,6 +24,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		for (SoldItem item : goods)
 			sum += item.getSum();
 		purchaseList.add(new SubmittedPurchase(new Date(), sum, goods));
+		solditems = new ArrayList<SoldItem>(goods);
+		for (SoldItem item : solditems)
+		System.out.println(item);
 		// Let's assume we have checked and found out that the buyer is underaged and
 		// cannot buy chupa-chups
 		//throw new VerificationFailedException("Underaged!");
@@ -41,6 +44,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 	public List<SubmittedPurchase> loadHistory() {
 		return purchaseList;
+	}
+	public List<SoldItem> loadSoldItemsHistory() {
+		return solditems;
 	}
 	
 	public List<StockItem> loadWarehouseState() {
