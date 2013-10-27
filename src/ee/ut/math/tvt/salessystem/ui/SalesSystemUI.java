@@ -52,7 +52,7 @@ public class SalesSystemUI extends JFrame {
     submitWindow = new SubmitPurchaseUI(this);
 
     // Create singleton instances of the tab classes
-    historyTab = new HistoryTab();
+    historyTab = new HistoryTab(domainController);
     stockTab = new StockTab(model);
     purchaseTab = new PurchaseTab(domainController, model, submitWindow);
 

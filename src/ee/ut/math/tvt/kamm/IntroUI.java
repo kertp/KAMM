@@ -51,8 +51,7 @@ public class IntroUI extends JFrame{
 		JLabel tiim = new JLabel("Team members:" + " "
 				+ prop.getProperty("Team.member.1") + ", "
 				+ prop.getProperty("Team.member.2") + ", "
-				+ prop.getProperty("Team.member.3") + ", "
-				+ prop.getProperty("Team.member.4"));
+				+ prop.getProperty("Team.member.3"));
 		versioon.setFont(new Font("Serif", Font.PLAIN, 20));
 		tiim.setFont(new Font("Serif", Font.PLAIN, 20));
 		tiimi_nimi.setFont(new Font("Serif", Font.PLAIN, 20));

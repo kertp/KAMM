@@ -5,14 +5,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.log4j.Logger;
+
+import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 public class SubmitPurchaseUI{
 	private static final Logger log = Logger.getLogger(SubmitPurchaseUI.class);
@@ -139,6 +146,12 @@ public class SubmitPurchaseUI{
 				}
 			}
 		});
+		/*raam.addWindowListener(new WindowAdapter() {
+			 public void windowOpened( WindowEvent e ){
+				 paid.grabFocus();
+				 paid.requestFocus();
+			 }
+		});*/
 		raam.add(confirm);
 		raam.add(cancel);
 		return raam;

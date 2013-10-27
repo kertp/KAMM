@@ -1,10 +1,13 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
+import java.util.NoSuchElementException;
+
 import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 
 /**
  * Purchase history details model.
@@ -63,6 +66,18 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
+		/*try {
+			SoldItem item = getItemById(soldItem.getId());
+			item.setQuantity(item.getQuantity() + soldItem.getQuantity());
+			log.debug("Found existing item " + soldItem.getName()
+					+ " increased quantity by " + soldItem.getQuantity());
+		}
+		catch (NoSuchElementException e) {
+			rows.add(soldItem);
+			log.debug("Added " + soldItem.getName()
+					+ " quantity of " + soldItem.getQuantity());
+		}
+		fireTableDataChanged();*/
     	for(int i = 0; i < getRowCount(); i++) {
     		if (getValueAt(i, 0) == (item.getId())) {
     			int a = rows.get(i).getQuantity();
