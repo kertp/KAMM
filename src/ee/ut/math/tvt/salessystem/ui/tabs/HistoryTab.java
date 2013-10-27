@@ -17,6 +17,7 @@ import javax.swing.table.TableModel;
 
 import org.apache.log4j.Logger;
 
+import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
@@ -65,14 +66,18 @@ public class HistoryTab {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
+				SoldItemHistoryUI aken = new SoldItemHistoryUI();
 				// TODO Auto-generated method stub
 				int viewRow = table.getSelectedRow();
 				//System.out.println(viewRow);
 				//System.out.println(arg0.toString());
-				if (viewRow != -1 && arg0.getValueIsAdjusting() == false)
-				for (SoldItem item : model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems())
+				if (viewRow != -1 && arg0.getValueIsAdjusting() == false) {
+				for (SoldItem item : model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems()) {
 					System.out.println(item.getName() +" "+ item.getPrice() +" "+ item.getId() +" "+
 				item.getQuantity()+" "+item.getSum());
+					aken.draw();
+				}
+				}
 			}
         	
         });

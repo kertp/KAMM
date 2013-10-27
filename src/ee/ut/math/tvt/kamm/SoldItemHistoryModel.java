@@ -1,26 +1,15 @@
 package ee.ut.math.tvt.kamm;
 
-import java.awt.Container;
-
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-
-/*import org.apache.log4j.Logger;
-
-import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemTableModel;
 
-public class SoldItemHistoryUI extends SalesSystemTableModel<SoldItem> {
-	private static final long serialVersionUID = 1L;
-	//private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
-	
-	public SoldItemHistoryUI() {
+public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
+
+	public SoldItemHistoryModel() {
 		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
 	}
 
+	@Override
 	protected Object getColumnValue(SoldItem item, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
@@ -36,7 +25,6 @@ public class SoldItemHistoryUI extends SalesSystemTableModel<SoldItem> {
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
-
 	@Override
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
@@ -56,21 +44,7 @@ public class SoldItemHistoryUI extends SalesSystemTableModel<SoldItem> {
 
 		return buffer.toString();
 	}
-}*/
-public class SoldItemHistoryUI {
-	private JDialog raam = new JDialog();
-	
-	public void draw() {
-		raam.setModal(true);
-		raam.setResizable(false);
-		raam.setSize(200, 200);
-		raam.add(new JTextField("tere hommikust"));
-		//Container parent = raam.getParent();
-		//raam.setLocation(parent.getLocationOnScreen().x+(parent.getWidth()-200)/2,
-		//		parent.getLocationOnScreen().y+(parent.getHeight()-200)/2);
-		raam.setVisible(true);
+	public void addItem(final SoldItem soldItem) {
+		
 	}
 }
-
-
-
