@@ -1,6 +1,12 @@
 package ee.ut.math.tvt.kamm;
 
-import org.apache.log4j.Logger;
+import java.awt.Container;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+/*import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
@@ -50,4 +56,21 @@ public class SoldItemHistoryUI extends SalesSystemTableModel<SoldItem> {
 
 		return buffer.toString();
 	}
+}*/
+public class SoldItemHistoryUI {
+	private JDialog raam = new JDialog();
+	
+	public void draw() {
+		raam.setModal(true);
+		raam.setResizable(false);
+		raam.setSize(200, 200);
+		raam.add(new JTextField("tere hommikust"));
+		//Container parent = raam.getParent();
+		//raam.setLocation(parent.getLocationOnScreen().x+(parent.getWidth()-200)/2,
+		//		parent.getLocationOnScreen().y+(parent.getHeight()-200)/2);
+		raam.setVisible(true);
+	}
 }
+
+
+
