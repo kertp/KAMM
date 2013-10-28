@@ -39,19 +39,21 @@
     </macrodef>
 	
 	 <macrodef name="git-publish">
-	    <attribute name="message" />
 	    <attribute name="dir" default = ""/>
 	    <attribute name="options" default="" />
 	    <attribute name="failerror" default="false" />
 	 	<attribute name="files" default="." />
 	    <sequential>
+	    	<input message="Message" addproperty="message"/>
 	    	<echo message="Git commit with message ${message}" />
 	        <git command="commit" dir="@{dir}" options="@{options}">
 	            <args>
 	                    <arg value="-am ${message}" />
 	            </args>
 	        </git>
-	    	<git command="push -u origin master" />
+	    	<input message="username" addproperty="username"/>
+	    	<input message="Password" addproperty="password"/>
+	    	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
 	    </sequential>
     </macrodef>
 	
@@ -131,7 +133,7 @@
 	
 	
 	<target name="git_commit">
-		<git-publish message="@{message}"/>
+		<git-publish/>
 	</target>
 	
 	<target name="git_tag">
