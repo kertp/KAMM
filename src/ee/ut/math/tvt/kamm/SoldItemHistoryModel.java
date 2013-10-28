@@ -10,21 +10,19 @@ public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
 	private static final long serialVersionUID = 1L;
 	
 	public SoldItemHistoryModel() {
-		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
+		super(new String[] {"Name", "Price", "Quantity", "Sum"});
 	}
 
 	@Override
 	protected Object getColumnValue(SoldItem item, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return item.getId();
-		case 1:
 			return item.getName();
-		case 2:
+		case 1:
 			return item.getPrice();
-		case 3:
+		case 2:
 			return item.getQuantity();
-		case 4:
+		case 3:
 			return item.getSum();
 		}
 		throw new IllegalArgumentException("Column index out of range");
@@ -38,7 +36,6 @@ public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
 		buffer.append("\n");
 
 		for (final SoldItem item : rows) {
-			buffer.append(item.getId() + "\t");
 			buffer.append(item.getName() + "\t");
 			buffer.append(item.getPrice() + "\t");
 			buffer.append(item.getQuantity() + "\t");

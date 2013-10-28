@@ -49,6 +49,4 @@ public interface SalesDomainController {
     
     public List<SubmittedPurchase> loadHistory();
     
-    public List<SoldItem> loadSoldItemsHistory();
-    
 }

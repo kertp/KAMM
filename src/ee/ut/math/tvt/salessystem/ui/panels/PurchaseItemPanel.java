@@ -197,16 +197,16 @@ public class PurchaseItemPanel extends JPanel {
     public void addItemEventHandler() {
         // add chosen item to the shopping cart.
         StockItem stockItem = getStockItemByName();
-        if (stockItem != null) {
-            int quantity;
-            int currentquantity = stockItem.getQuantity();
-            try {
-                quantity = Integer.parseInt(quantityField.getText());
-            } catch (NumberFormatException ex) {
-                quantity = 1;
-            }
+        int soldquantity;
+        try {
+        	soldquantity = Integer.parseInt(quantityField.getText());
+        } catch (NumberFormatException ex) {
+            soldquantity = 1;
+        }
+        if (stockItem != null && soldquantity > 0) {
+            int stockquantity = stockItem.getQuantity();
             model.getCurrentPurchaseTableModel()
-                .addItem(new SoldItem(stockItem, quantity), currentquantity);
+                .addItem(new SoldItem(stockItem, soldquantity), stockquantity);
         }
     }
 

@@ -15,18 +15,35 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
  */
 public class SalesDomainControllerImpl implements SalesDomainController {
 	
-	private List<SubmittedPurchase> purchaseList = new ArrayList<SubmittedPurchase>();
-	private List<SoldItem> solditems = new ArrayList<SoldItem>();
+	private List<SubmittedPurchase> purchaseList;
+	private List<StockItem> stockItems;
 	
+	public SalesDomainControllerImpl () {
+		stockItems = new ArrayList<StockItem>();
+		purchaseList = new ArrayList<SubmittedPurchase>();
+		
+		StockItem chips = new StockItem(1l, "Lays chips", "Potato chips", 11.0, 5);
+		StockItem chupaChups = new StockItem(2l, "Chupa-chups", "Sweets", 8.0, 8);
+	    StockItem frankfurters = new StockItem(3l, "Frankfurters", "Beer sauseges", 15.0, 12);
+	    StockItem beer = new StockItem(4l, "Free Beer", "Student's delight", 0.0, 100);
+
+		stockItems.add(chips);
+		stockItems.add(chupaChups);
+		stockItems.add(frankfurters);
+		stockItems.add(beer);
+	}
 	
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
 		float sum = 0;
-		for (SoldItem item : goods)
+		for (SoldItem item : goods) {
 			sum += item.getSum();
+			for (StockItem stockitem : stockItems) {
+				if (stockitem.getId() == item.getId()) {
+					stockitem.setQuantity(stockitem.getQuantity()-item.getQuantity());
+				}
+			}
+		}
 		purchaseList.add(new SubmittedPurchase(new Date(), sum, goods));
-		solditems = new ArrayList<SoldItem>(goods);
-		for (SoldItem item : solditems)
-		System.out.println(item);
 		// Let's assume we have checked and found out that the buyer is underaged and
 		// cannot buy chupa-chups
 		//throw new VerificationFailedException("Underaged!");
@@ -45,24 +62,8 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	public List<SubmittedPurchase> loadHistory() {
 		return purchaseList;
 	}
-	public List<SoldItem> loadSoldItemsHistory() {
-		return solditems;
-	}
 	
 	public List<StockItem> loadWarehouseState() {
-		// XXX mock implementation
-		List<StockItem> dataset = new ArrayList<StockItem>();
-
-		StockItem chips = new StockItem(1l, "Lays chips", "Potato chips", 11.0, 5);
-		StockItem chupaChups = new StockItem(2l, "Chupa-chups", "Sweets", 8.0, 8);
-	    StockItem frankfurters = new StockItem(3l, "Frankfurters", "Beer sauseges", 15.0, 12);
-	    StockItem beer = new StockItem(4l, "Free Beer", "Student's delight", 0.0, 100);
-
-		dataset.add(chips);
-		dataset.add(chupaChups);
-		dataset.add(frankfurters);
-		dataset.add(beer);
-		
-		return dataset;
+		return stockItems;
 	}
 }

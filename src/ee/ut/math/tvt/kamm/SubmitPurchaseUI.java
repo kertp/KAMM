@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -37,7 +38,7 @@ public class SubmitPurchaseUI{
 		this.raam = new JDialog(parent);
 	}
 	public void setTotal(float sum) {
-		total.setText(String.valueOf(sum));
+		total.setText(String.format(Locale.US, "%.2f", sum));
 		if (sum > 0)
 			confirm.setEnabled(false);
 	}
@@ -105,7 +106,7 @@ public class SubmitPurchaseUI{
 					}
 					float change_float = Float.parseFloat(paid_text)-Float.parseFloat(total.getText());
 					change_float = (float)(Math.round(change_float*100)/100.0);
-					change.setText(String.valueOf(change_float));
+					change.setText(String.format(Locale.US, "%.2f",change_float));
 					if (change_float >= 0) {
 						confirm.setEnabled(true);
 					}
@@ -116,8 +117,11 @@ public class SubmitPurchaseUI{
 						change.setText("");
 					else if (paid_len == 0)
 						change.setText("");
-					else
+					else {
 						paid.setText(paid_text.substring(0, paid_len-1));
+					}
+				} finally {
+					
 				}
 			}
 

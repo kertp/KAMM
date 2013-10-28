@@ -70,15 +70,11 @@ public class HistoryTab {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				// TODO Auto-generated method stub
 				int viewRow = table.getSelectedRow();
-				//System.out.println(viewRow);
-				//System.out.println(arg0.toString());
 				if (viewRow != -1 && arg0.getValueIsAdjusting() == false) {
-					for (SoldItem item : model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems()) {
-						System.out.println(item.getName() +" "+ item.getPrice() +" "+ item.getId() +" "+
-								item.getQuantity()+" "+item.getSum());
-					}
+					model.getSoldItemHistoryModel().populateWithData(
+							model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems());
+					model.getSoldItemHistoryModel().fireTableDataChanged();
 					soldItemsWindow.setVisible(true);
 				}
 			}
