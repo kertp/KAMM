@@ -53,7 +53,11 @@
 	        </git>
 	    	<input message="username" addproperty="username"/>
 	    	<input message="Password" addproperty="password"/>
-	    	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
+	        <git command="commit" dir="@{dir}" options="@{options}">
+	            <args>
+	            	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
+	            </args>
+	        </git>
 	    </sequential>
     </macrodef>
 	
@@ -137,7 +141,7 @@
 	</target>
 	
 	<target name="git_tag">
-		<git-tag tag="@{tag}" message="@{message}"/>
+		<git-tag/>
 	</target>
 	
 	
