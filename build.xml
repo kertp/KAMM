@@ -130,11 +130,11 @@
 	</target>
 	
 	
-	<target name="git-publish">
+	<target name="git_commit">
 		<git-publish message="@{message}"/>
 	</target>
 	
-	<target name="git-tag">
+	<target name="git_tag">
 		<git-tag tag="@{tag}" message="@{message}"/>
 	</target>
 	
