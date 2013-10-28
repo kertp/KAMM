@@ -6,7 +6,6 @@ import ee.ut.math.tvt.kamm.AddStockItemUI;
 import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.tabs.HistoryTab;
 import ee.ut.math.tvt.salessystem.ui.tabs.PurchaseTab;
@@ -30,81 +29,82 @@ import org.apache.log4j.Logger;
  */
 public class SalesSystemUI extends JFrame {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private static final Logger log = Logger.getLogger(SalesSystemUI.class);
+	private static final Logger log = Logger.getLogger(SalesSystemUI.class);
 
-  private final SalesDomainController domainController;
+	private final SalesDomainController domainController;
 
-  // Warehouse model
-  private SalesSystemModel model;
+	// Warehouse model
+	private SalesSystemModel model;
 
-  // Instances of tab classes
-  private PurchaseTab purchaseTab;
-  private HistoryTab historyTab;
-  private StockTab stockTab;
-  private SubmitPurchaseUI submitWindow;
-  private SoldItemHistoryUI soldItemsWindow;
-  private AddStockItemUI addItemWindow;
-  
-  private JComboBox<String> productMenu;
+	// Instances of tab classes
+	private PurchaseTab purchaseTab;
+	private HistoryTab historyTab;
+	private StockTab stockTab;
+	private SubmitPurchaseUI submitWindow;
+	private SoldItemHistoryUI soldItemsWindow;
+	private AddStockItemUI addItemWindow;
 
-  /**
-   * Constructs sales system GUI.
-   * @param domainController Sales domain controller.
-   */
-  public SalesSystemUI(SalesDomainController domainController) {
-    this.domainController = domainController;
-    this.model = new SalesSystemModel(domainController);
-    
-    productMenu = new JComboBox <String>();
-    
-    submitWindow = new SubmitPurchaseUI(this);
-    soldItemsWindow = new SoldItemHistoryUI(model, this);
-    addItemWindow = new AddStockItemUI(model, this, productMenu);
+	private JComboBox<String> productMenu;
 
-    // Create singleton instances of the tab classes
-    historyTab = new HistoryTab(model, soldItemsWindow);
-    stockTab = new StockTab(model, addItemWindow);
-    purchaseTab = new PurchaseTab(domainController, model, submitWindow, productMenu);
+	/**
+	 * Constructs sales system GUI.
+	 * 
+	 * @param domainController
+	 *            Sales domain controller.
+	 */
+	public SalesSystemUI(SalesDomainController domainController) {
+		this.domainController = domainController;
+		this.model = new SalesSystemModel(domainController);
 
-    setTitle("Sales system");
+		productMenu = new JComboBox<String>();
 
-    // set L&F to the nice Windows style
-    try {
-      UIManager.setLookAndFeel(new WindowsLookAndFeel());
+		submitWindow = new SubmitPurchaseUI(this);
+		soldItemsWindow = new SoldItemHistoryUI(model, this);
+		addItemWindow = new AddStockItemUI(model, this, productMenu);
 
-    } catch (UnsupportedLookAndFeelException e1) {
-      log.warn(e1.getMessage());
-    }
+		// Create singleton instances of the tab classes
+		historyTab = new HistoryTab(model, soldItemsWindow);
+		stockTab = new StockTab(model, addItemWindow);
+		purchaseTab = new PurchaseTab(domainController, model, submitWindow,
+				productMenu);
 
-    drawWidgets();
+		setTitle("Sales system");
 
-    // size & location
-    int width = 600;
-    int height = 400;
-    setSize(width, height);
-    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-    setLocation((screen.width - width) / 2, (screen.height - height) / 2);
+		// set L&F to the nice Windows style
+		try {
+			UIManager.setLookAndFeel(new WindowsLookAndFeel());
 
-    addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    });
-  }
+		} catch (UnsupportedLookAndFeelException e1) {
+			log.warn(e1.getMessage());
+		}
 
-  private void drawWidgets() {
-    JTabbedPane tabbedPane = new JTabbedPane();
+		drawWidgets();
 
-    tabbedPane.add("Point-of-sale", purchaseTab.draw());
-    tabbedPane.add("Warehouse", stockTab.draw());
-    tabbedPane.add("History", historyTab.draw());
+		// size & location
+		int width = 600;
+		int height = 400;
+		setSize(width, height);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation((screen.width - width) / 2, (screen.height - height) / 2);
 
-    getContentPane().add(tabbedPane);
-  }
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+
+	private void drawWidgets() {
+		JTabbedPane tabbedPane = new JTabbedPane();
+
+		tabbedPane.add("Point-of-sale", purchaseTab.draw());
+		tabbedPane.add("Warehouse", stockTab.draw());
+		tabbedPane.add("History", historyTab.draw());
+
+		getContentPane().add(tabbedPane);
+	}
 
 }
-
-

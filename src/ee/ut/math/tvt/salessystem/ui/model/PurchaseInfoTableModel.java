@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 
 /**
  * Purchase history details model.
@@ -15,10 +14,11 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
-	
+	private static final Logger log = Logger
+			.getLogger(PurchaseInfoTableModel.class);
+
 	public PurchaseInfoTableModel() {
-		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
+		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum" });
 	}
 
 	@Override
@@ -57,42 +57,41 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 
 		return buffer.toString();
 	}
-	
-    /**
-     * Add new StockItem to table.
-     */
-    public void addItem(final SoldItem soldItem, final int stockquantity) {
-        /**
-         * XXX In case such stockItem already exists increase the quantity of the
-         * existing stock.
-         */
+
+	/**
+	 * Add new StockItem to table.
+	 */
+	public void addItem(final SoldItem soldItem, final int stockquantity) {
+		/**
+		 * XXX In case such stockItem already exists increase the quantity of
+		 * the existing stock.
+		 */
 		try {
 			SoldItem item = getItemById(soldItem.getId());
 			int newquantity = item.getQuantity() + soldItem.getQuantity();
 			if (stockquantity < newquantity) {
 				JOptionPane.showMessageDialog(null, "Not enough stock!");
-				log.debug("Stock of " + soldItem.getName() + " is " + stockquantity +
-						". Cannot increase quantity to " + newquantity );
-			}
-			else {
+				log.debug("Stock of " + soldItem.getName() + " is "
+						+ stockquantity + ". Cannot increase quantity to "
+						+ newquantity);
+			} else {
 				item.setQuantity(item.getQuantity() + soldItem.getQuantity());
 				log.debug("Found existing item " + soldItem.getName()
 						+ " increased quantity by " + soldItem.getQuantity());
 				fireTableDataChanged();
 			}
-		}
-		catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			if (stockquantity < soldItem.getQuantity()) {
 				JOptionPane.showMessageDialog(null, "Not enough stock!");
-				log.debug("Stock of " + soldItem.getName() + " is " + stockquantity +
-						". Cannot add " + soldItem.getQuantity() + " items");
-			}
-			else {
+				log.debug("Stock of " + soldItem.getName() + " is "
+						+ stockquantity + ". Cannot add "
+						+ soldItem.getQuantity() + " items");
+			} else {
 				rows.add(soldItem);
-				log.debug("Added " + soldItem.getName()
-						+ " quantity of " + soldItem.getQuantity());
+				log.debug("Added " + soldItem.getName() + " quantity of "
+						+ soldItem.getQuantity());
 				fireTableDataChanged();
 			}
 		}
-    }
+	}
 }

@@ -6,21 +6,16 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
-import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 /**
@@ -28,71 +23,77 @@ import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
  * labelled "History" in the menu).
  */
 public class HistoryTab {
-    
-	private static final Logger log = Logger.getLogger(HistoryTab.class);
-	
+
+	// private static final Logger log = Logger.getLogger(HistoryTab.class);
+
 	private JTable table;
 	private SalesSystemModel model;
-	
+
 	private SoldItemHistoryUI soldItemsWindow;
 
-    public HistoryTab(SalesSystemModel model, SoldItemHistoryUI soldItemsWindow) {
-    	this.model = model;
-    	this.soldItemsWindow = soldItemsWindow;
-    	soldItemsWindow.draw();
-    }
-    public Component draw() {
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	public HistoryTab(SalesSystemModel model, SoldItemHistoryUI soldItemsWindow) {
+		this.model = model;
+		this.soldItemsWindow = soldItemsWindow;
+		soldItemsWindow.draw();
+	}
 
-        GridBagLayout gb = new GridBagLayout();
-        GridBagConstraints gc = new GridBagConstraints();
-        panel.setLayout(gb);
+	public Component draw() {
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        gc.fill = GridBagConstraints.HORIZONTAL;
-        gc.anchor = GridBagConstraints.NORTH;
-        gc.gridwidth = GridBagConstraints.REMAINDER;
-        gc.weightx = 1.0d;
-        gc.weighty = 0d;
+		GridBagLayout gb = new GridBagLayout();
+		GridBagConstraints gc = new GridBagConstraints();
+		panel.setLayout(gb);
 
-        gc.weighty = 1.0;
-        gc.fill = GridBagConstraints.BOTH;
-        panel.add(drawHistoryMainPane(), gc);
-        return panel;
-      }
-    public Component drawHistoryMainPane() {
-        JPanel panel = new JPanel();
-        table = new JTable(model.getHistoryTableModel());
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener () {
+		gc.fill = GridBagConstraints.HORIZONTAL;
+		gc.anchor = GridBagConstraints.NORTH;
+		gc.gridwidth = GridBagConstraints.REMAINDER;
+		gc.weightx = 1.0d;
+		gc.weighty = 0d;
 
-			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
-				int viewRow = table.getSelectedRow();
-				if (viewRow != -1 && arg0.getValueIsAdjusting() == false) {
-					model.getSoldItemHistoryModel().populateWithData(
-							model.getHistoryTableModel().getTableRows().get(viewRow).getSoldItems());
-					model.getSoldItemHistoryModel().fireTableDataChanged();
-					soldItemsWindow.setVisible(true);
-				}
-			}
-        	
-        });
+		gc.weighty = 1.0;
+		gc.fill = GridBagConstraints.BOTH;
+		panel.add(drawHistoryMainPane(), gc);
+		return panel;
+	}
 
-        JTableHeader header = table.getTableHeader();
-        header.setReorderingAllowed(false);
+	public Component drawHistoryMainPane() {
+		JPanel panel = new JPanel();
+		table = new JTable(model.getHistoryTableModel());
+		table.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
 
-        JScrollPane scrollPane = new JScrollPane(table);
+					@Override
+					public void valueChanged(ListSelectionEvent arg0) {
+						int viewRow = table.getSelectedRow();
+						if (viewRow != -1
+								&& arg0.getValueIsAdjusting() == false) {
+							model.getSoldItemHistoryModel().populateWithData(
+									model.getHistoryTableModel().getTableRows()
+											.get(viewRow).getSoldItems());
+							model.getSoldItemHistoryModel()
+									.fireTableDataChanged();
+							soldItemsWindow.setVisible(true);
+						}
+					}
 
-        GridBagConstraints gc = new GridBagConstraints();
-        GridBagLayout gb = new GridBagLayout();
-        gc.fill = GridBagConstraints.BOTH;
-        gc.weightx = 1.0;
-        gc.weighty = 1.0;
+				});
 
-        panel.setLayout(gb);
-        panel.add(scrollPane, gc);
+		JTableHeader header = table.getTableHeader();
+		header.setReorderingAllowed(false);
 
-        panel.setBorder(BorderFactory.createTitledBorder("History"));
-        return panel;
-      }
+		JScrollPane scrollPane = new JScrollPane(table);
+
+		GridBagConstraints gc = new GridBagConstraints();
+		GridBagLayout gb = new GridBagLayout();
+		gc.fill = GridBagConstraints.BOTH;
+		gc.weightx = 1.0;
+		gc.weighty = 1.0;
+
+		panel.setLayout(gb);
+		panel.add(scrollPane, gc);
+
+		panel.setBorder(BorderFactory.createTitledBorder("History"));
+		return panel;
+	}
 }

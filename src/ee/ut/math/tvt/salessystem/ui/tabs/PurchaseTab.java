@@ -1,9 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
-import ee.ut.math.tvt.kamm.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -24,8 +22,8 @@ import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 
 /**
- * Encapsulates everything that has to do with the purchase tab (the tab
- * labelled "Point-of-sale" in the menu).
+ * Encapsulates everything that has to do with the purchase tab (the tab labeled
+ * "Point-of-sale" in the menu).
  */
 public class PurchaseTab {
 
@@ -42,12 +40,13 @@ public class PurchaseTab {
 	private PurchaseItemPanel purchasePane;
 
 	private SalesSystemModel model;
-	
+
 	private SubmitPurchaseUI submitWindow;
-	
+
 	private JComboBox<String> productMenu;
 
-	public PurchaseTab(SalesDomainController controller, SalesSystemModel model, SubmitPurchaseUI submitWindow,
+	public PurchaseTab(SalesDomainController controller,
+			SalesSystemModel model, SubmitPurchaseUI submitWindow,
 			JComboBox<String> productMenu) {
 		this.domainController = controller;
 		this.model = model;
@@ -169,11 +168,12 @@ public class PurchaseTab {
 	protected void submitPurchaseButtonClicked() {
 		if (!model.getCurrentPurchaseTableModel().getTableRows().isEmpty()) {
 			float sum = 0;
-			for (SoldItem item : model.getCurrentPurchaseTableModel().getTableRows())
+			for (SoldItem item : model.getCurrentPurchaseTableModel()
+					.getTableRows())
 				sum += item.getSum();
 			submitWindow.setTotal(sum);
 			submitWindow.setVisible(true);
-			if(submitWindow.isConfirmed()) {
+			if (submitWindow.isConfirmed()) {
 				log.info("Sale complete");
 				try {
 					log.debug("Contents of the current basket:\n"
@@ -181,7 +181,8 @@ public class PurchaseTab {
 					domainController.submitCurrentPurchase(model
 							.getCurrentPurchaseTableModel().getTableRows());
 					endSale();
-					model.getHistoryTableModel().populateWithData(domainController.loadHistory());
+					model.getHistoryTableModel().populateWithData(
+							domainController.loadHistory());
 					model.getHistoryTableModel().fireTableDataChanged();
 					model.getCurrentPurchaseTableModel().clear();
 				} catch (VerificationFailedException e1) {

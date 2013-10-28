@@ -16,13 +16,14 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 	private List<SoldItem> soldItems;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-	
+
 	public SubmittedPurchase(Date date, float total, List<SoldItem> soldItems) {
 		this.date = dateFormat.format(date);
-		this.time = timeFormat.format(date); 
+		this.time = timeFormat.format(date);
 		this.total = total;
 		this.soldItems = soldItems;
 	}
+
 	public List<SoldItem> getSoldItems() {
 		return soldItems;
 	}
@@ -30,6 +31,7 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 	public void setSoldItems(List<SoldItem> soldItems) {
 		this.soldItems = soldItems;
 	}
+
 	public String getTime() {
 		return time;
 	}

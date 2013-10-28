@@ -1,16 +1,13 @@
 package ee.ut.math.tvt.kamm;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemTableModel;
 
-public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
+public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem> {
 	private static final long serialVersionUID = 1L;
-	
+
 	public SoldItemHistoryModel() {
-		super(new String[] {"Name", "Price", "Quantity", "Sum"});
+		super(new String[] { "Name", "Price", "Quantity", "Sum" });
 	}
 
 	@Override
@@ -27,6 +24,7 @@ public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
+
 	@Override
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
@@ -45,6 +43,7 @@ public class SoldItemHistoryModel extends SalesSystemTableModel<SoldItem>{
 
 		return buffer.toString();
 	}
+
 	public void addItem(final SoldItem soldItem) {
 		rows.add(soldItem);
 	}

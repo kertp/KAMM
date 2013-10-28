@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -13,11 +12,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class IntroUI extends JFrame{
-	
+public class IntroUI extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
 	private JFrame raam = this;
-	
-	public JFrame display(){
+
+	public JFrame display() {
 		// load a properties file from class path, inside static method
 		Properties prop = new Properties();
 		Properties vers = new Properties();
@@ -28,9 +29,9 @@ public class IntroUI extends JFrame{
 			e.printStackTrace();
 		}
 		int width = 700;
-		int height= 500;
-	    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-	    setLocation((screen.width - width) / 2, (screen.height - height) / 2);
+		int height = 500;
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation((screen.width - width) / 2, (screen.height - height) / 2);
 		raam.setLayout(new GridLayout(6, 1));
 		raam.setSize(width, height);
 		JLabel versioon = new JLabel("Version: "

@@ -2,20 +2,17 @@ package ee.ut.math.tvt.kamm;
 
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
-import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
-import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
-import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemTableModel;
 
-public class SubmittedPurchaseTableModel extends SalesSystemTableModel<SubmittedPurchase> {
+public class SubmittedPurchaseTableModel extends
+		SalesSystemTableModel<SubmittedPurchase> {
 	private static final long serialVersionUID = 1L;
-	
-	private static final Logger log = Logger.getLogger(SubmittedPurchaseTableModel.class);
-	
+
+	private static final Logger log = Logger
+			.getLogger(SubmittedPurchaseTableModel.class);
+
 	public SubmittedPurchaseTableModel() {
-		super(new String[] {"Date", "Time", "Total"});
+		super(new String[] { "Date", "Time", "Total" });
 	}
 
 	@Override
@@ -32,7 +29,7 @@ public class SubmittedPurchaseTableModel extends SalesSystemTableModel<Submitted
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
-		
+
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
 
@@ -49,11 +46,12 @@ public class SubmittedPurchaseTableModel extends SalesSystemTableModel<Submitted
 
 		return buffer.toString();
 	}
-	
+
 	public void addItem(final SubmittedPurchase item) {
-        rows.add(item);
-        log.debug("Added " + item.getDate() + " " + item.getTime() + ". Total: " + item.getTotal());
-        fireTableDataChanged();
+		rows.add(item);
+		log.debug("Added " + item.getDate() + " " + item.getTime()
+				+ ". Total: " + item.getTotal());
+		fireTableDataChanged();
 	}
 
 }
