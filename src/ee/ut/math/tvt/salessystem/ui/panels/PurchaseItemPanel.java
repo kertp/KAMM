@@ -35,7 +35,7 @@ public class PurchaseItemPanel extends JPanel {
     private JTextField quantityField;
     private JTextField nameField;
     private JTextField priceField;
-    private JComboBox <String> productMenu;
+    private JComboBox<String> productMenu;
 
     private JButton addItemButton;
 
@@ -48,8 +48,9 @@ public class PurchaseItemPanel extends JPanel {
      * @param model
      *            composite model of the warehouse and the shopping cart.
      */
-    public PurchaseItemPanel(SalesSystemModel model) {
+    public PurchaseItemPanel(SalesSystemModel model, JComboBox<String> productMenu) {
         this.model = model;
+        this.productMenu = productMenu;
 
         setLayout(new GridBagLayout());
 

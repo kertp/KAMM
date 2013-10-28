@@ -2,9 +2,11 @@ package ee.ut.math.tvt.salessystem.ui;
 
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
+import ee.ut.math.tvt.kamm.AddStockItemUI;
 import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.tabs.HistoryTab;
 import ee.ut.math.tvt.salessystem.ui.tabs.PurchaseTab;
@@ -15,6 +17,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
@@ -42,6 +45,9 @@ public class SalesSystemUI extends JFrame {
   private StockTab stockTab;
   private SubmitPurchaseUI submitWindow;
   private SoldItemHistoryUI soldItemsWindow;
+  private AddStockItemUI addItemWindow;
+  
+  private JComboBox<String> productMenu;
 
   /**
    * Constructs sales system GUI.
@@ -51,13 +57,16 @@ public class SalesSystemUI extends JFrame {
     this.domainController = domainController;
     this.model = new SalesSystemModel(domainController);
     
+    productMenu = new JComboBox <String>();
+    
     submitWindow = new SubmitPurchaseUI(this);
     soldItemsWindow = new SoldItemHistoryUI(model, this);
+    addItemWindow = new AddStockItemUI(model, this, productMenu);
 
     // Create singleton instances of the tab classes
     historyTab = new HistoryTab(model, soldItemsWindow);
-    stockTab = new StockTab(model);
-    purchaseTab = new PurchaseTab(domainController, model, submitWindow);
+    stockTab = new StockTab(model, addItemWindow);
+    purchaseTab = new PurchaseTab(domainController, model, submitWindow, productMenu);
 
     setTitle("Sales system");
 

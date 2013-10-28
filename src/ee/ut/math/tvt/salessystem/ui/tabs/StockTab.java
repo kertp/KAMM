@@ -1,12 +1,19 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.kamm.AddStockItemUI;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,9 +25,14 @@ public class StockTab {
   private JButton addItem;
 
   private SalesSystemModel model;
+  
+  private AddStockItemUI addItemWindow;
+ 
 
-  public StockTab(SalesSystemModel model) {
+  public StockTab(SalesSystemModel model, AddStockItemUI addItemWindow) {
     this.model = model;
+    this.addItemWindow = addItemWindow;
+    addItemWindow.draw();
   }
 
   // warehouse stock tab - consists of a menu and a table
@@ -59,6 +71,14 @@ public class StockTab {
     gc.weightx = 0;
 
     addItem = new JButton("Add");
+    addItem.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			addItemWindow.setVisible(true);
+		}
+    	
+    });
     gc.gridwidth = GridBagConstraints.RELATIVE;
     gc.weightx = 1.0;
     panel.add(addItem, gc);

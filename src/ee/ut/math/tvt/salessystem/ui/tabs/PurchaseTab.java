@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.tabs;
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
 import ee.ut.math.tvt.kamm.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -22,6 +23,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -53,11 +55,15 @@ public class PurchaseTab {
 	private SalesSystemModel model;
 	
 	private SubmitPurchaseUI submitWindow;
+	
+	private JComboBox<String> productMenu;
 
-	public PurchaseTab(SalesDomainController controller, SalesSystemModel model, SubmitPurchaseUI submitWindow) {
+	public PurchaseTab(SalesDomainController controller, SalesSystemModel model, SubmitPurchaseUI submitWindow,
+			JComboBox<String> productMenu) {
 		this.domainController = controller;
 		this.model = model;
 		this.submitWindow = submitWindow;
+		this.productMenu = productMenu;
 		submitWindow.drawSubmitWindow();
 	}
 
@@ -76,7 +82,7 @@ public class PurchaseTab {
 		panel.add(getPurchaseMenuPane(), getConstraintsForPurchaseMenu());
 
 		// Add the main purchase-panel
-		purchasePane = new PurchaseItemPanel(model);
+		purchasePane = new PurchaseItemPanel(model, productMenu);
 		panel.add(purchasePane, getConstraintsForPurchasePanel());
 
 		return panel;
@@ -177,8 +183,6 @@ public class PurchaseTab {
 			for (SoldItem item : model.getCurrentPurchaseTableModel().getTableRows())
 				sum += item.getSum();
 			submitWindow.setTotal(sum);
-			submitWindow.setPaid("");
-			submitWindow.setChange("");
 			submitWindow.setVisible(true);
 			if(submitWindow.isConfirmed()) {
 				log.info("Sale complete");
