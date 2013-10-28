@@ -53,7 +53,7 @@
 	        </git>
 	    	<input message="username" addproperty="username"/>
 	    	<input message="Password" addproperty="password"/>
-	        <git command="commit" dir="@{dir}" options="@{options}">
+	        <git command="push">
 	            <args>
 	            	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
 	            </args>
