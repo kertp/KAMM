@@ -1,7 +1,5 @@
 package ee.ut.math.tvt.kamm;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,18 +41,7 @@ public class AddStockItemUI {
 	}
 	  public void draw() {
 
-		    /*GridBagLayout gb = new GridBagLayout();
-		    GridBagConstraints gc = new GridBagConstraints();*/
 		    panel.setLayout(new GridLayout(6, 2));
-
-		    /*gc.fill = GridBagConstraints.HORIZONTAL;
-		    gc.anchor = GridBagConstraints.NORTH;
-		    gc.gridwidth = GridBagConstraints.REMAINDER;
-		    gc.weightx = 1.0d;
-		    gc.weighty = 0d;
-
-		    gc.weighty = 1.0;
-		    gc.fill = GridBagConstraints.BOTH;*/
 		    id.getDocument().addDocumentListener(new DocumentListener() {
 
 				@Override

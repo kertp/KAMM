@@ -48,12 +48,6 @@ public class SubmitPurchaseUI{
 		if (sum > 0)
 			confirm.setEnabled(false);
 	}
-	/*public void setPaid (String text) {
-		paid.setText(text);
-	}
-	public void setChange(String text) {
-		change.setText(text);
-	}*/
 	public boolean isConfirmed() {
 		return confirmed;
 	}
@@ -171,68 +165,6 @@ public class SubmitPurchaseUI{
 			}
 			
 		});
-		/*paid.addKeyListener(new KeyListener(){
-			
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-			}
-
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				String paid_text = paid.getText();
-				int paid_len = paid_text.length();
-				char last_input;
-				try {
-					Float.parseFloat(paid_text);
-					if (paid_len > 1) {
-						last_input = paid_text.charAt(paid_len-1);
-						if (last_input == 'f' || last_input == 'd')
-							throw new NumberFormatException();
-					}
-					float change_float = Float.parseFloat(paid_text)-Float.parseFloat(total.getText());
-					change_float = (float)(Math.round(change_float*100)/100.0);
-					change.setText(String.format(Locale.US, "%.2f",change_float));
-					if (change_float >= 0) {
-						confirm.setEnabled(true);
-					}
-					else
-						confirm.setEnabled(false);
-				} catch (NumberFormatException ex) {
-					if (paid_text.equals("."))
-						change.setText("");
-					else if (paid_len == 0)
-						change.setText("");
-					else {
-						paid.setText(paid_text.substring(0, paid_len-1));
-					}
-				}
-			}
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				String paid_text = paid.getText();
-				int paid_len = paid_text.length();
-				char last_input;
-				int point_index = paid_text.indexOf('.');
-				try {
-					Float.parseFloat(paid_text);
-					if (paid_len > 1) {
-						last_input = paid_text.charAt(paid_len-1);
-						if (last_input == 'f' || last_input == 'd')
-							throw new NumberFormatException();
-					}
-					if (point_index == paid_len - 3 && point_index != -1)
-						throw new NumberFormatException();
-				} catch (NumberFormatException ex) {
-					if (paid_text.equals("."))
-						change.setText("");
-					else if (paid_len == 0)
-						change.setText("");
-					else
-						paid.setText(paid_text.substring(0, paid_len-1));
-				}
-			}
-		});*/
 		raam.add(confirm);
 		raam.add(cancel);
 		return raam;

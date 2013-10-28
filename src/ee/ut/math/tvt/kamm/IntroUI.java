@@ -17,10 +17,6 @@ public class IntroUI extends JFrame{
 	
 	private JFrame raam = this;
 	
-	/*IntroUI(){
-		this.raam = this;
-	}*/
-	
 	public JFrame display(){
 		// load a properties file from class path, inside static method
 		Properties prop = new Properties();
@@ -29,7 +25,6 @@ public class IntroUI extends JFrame{
 			prop.load(new FileInputStream("application.properties"));
 			vers.load(new FileInputStream("version.properties"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int width = 700;
@@ -66,15 +61,4 @@ public class IntroUI extends JFrame{
 		raam.setVisible(true);
 		return raam;
 	}
-	
-	/*public void setVisible(boolean value){
-//		return;
-		this.raam.setVisible(value);
-	}
-	
-	public void setAlwaysOnTop(boolean value){
-//		this.raam.setVisible(value);
-		return;
-	}*/
-
 }

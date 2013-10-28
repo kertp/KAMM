@@ -32,16 +32,13 @@ public class HistoryTab {
 	private static final Logger log = Logger.getLogger(HistoryTab.class);
 	
 	private JTable table;
-    // TODO - implement!
 	private SalesSystemModel model;
-	//private final SalesDomainController domainController;
 	
 	private SoldItemHistoryUI soldItemsWindow;
 
     public HistoryTab(SalesSystemModel model, SoldItemHistoryUI soldItemsWindow) {
     	this.model = model;
     	this.soldItemsWindow = soldItemsWindow;
-    	//this.domainController = domainController;
     	soldItemsWindow.draw();
     }
     public Component draw() {
