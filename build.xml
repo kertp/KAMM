@@ -39,38 +39,30 @@
     </macrodef>
 	
 	 <macrodef name="git-publish">
+	    <attribute name="message" />
 	    <attribute name="dir" default = ""/>
 	    <attribute name="options" default="" />
 	    <attribute name="failerror" default="false" />
 	 	<attribute name="files" default="." />
 	    <sequential>
-	    	<input message="Message" addproperty="message"/>
 	    	<echo message="Git commit with message ${message}" />
 	        <git command="commit" dir="@{dir}" options="@{options}">
 	            <args>
 	                    <arg value="-am ${message}" />
 	            </args>
 	        </git>
-	    	<input message="username" addproperty="username"/>
-	    	<input message="password:" addproperty="password">
-	    	    <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
-	    	</input>
-	        <git command="push">
-	            <args>
-	            	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
-	            </args>
-	        </git>
+	    	<git command="push -u origin master" />
 	    </sequential>
     </macrodef>
 	
 	 <macrodef name="git-tag">
+	    <attribute name="tag" />
+	 	<attribute name="message" />
 	    <attribute name="dir" default = ""/>
 	    <attribute name="options" default="" />
 	    <attribute name="failerror" default="false" />
 	 	<attribute name="files" default="." />
 	    <sequential>
-	    	<input message="message" addproperty="message"/>
-	    	<input message="tag" addproperty="tag"/>
 	    	<echo message="Git create tag ${tag} with message ${message}" />
 	        <git command="tag -a ${tag} -m ${message}"></git>
 	    	<git command="push --tags"></git>
@@ -106,18 +98,24 @@
 		<propertyfile file="version.properties" comment="Build Number for ANT.">
 			<entry key="build.revision.number" type="int" operation="+" default="1" />
 		</propertyfile>
-		<jar jarfile="${build}/jar/kamm.jar" basedir="${build}" includes="application.properties version.properties lib/pictures/kamm.png">
-		</jar>
+        <jar destfile="${basedir}\build\jar\kamm.jar">
+	    <fileset dir="${basedir}\build\classes" />
+	    <fileset dir="${basedir}\src" includes="**/*.java"/>
+        <zipgroupfileset dir="${basedir}\lib" includes="**/*.jar" />
+            <manifest>
+                <attribute name="Main-Class" value="ee.ut.math.tvt.kamm.Intro"/>
+            </manifest>
+        </jar>
+
 	</target>
 
 	<target name="jrun" description="Run jar file">
-		<exec executable="cmd.exe" dir="\${build}\jar"><arg line="/c explorer ." />
-		</exec>
+		<java jar="${basedir}\build\jar\kamm.jar" fork="true"/>
 	</target>
 	
 	<target name="run" depends="build" description="Run the template application">
 		<java
-		          classname="ee.ut.math.tvt.[team].Intro"
+		          classname="ee.ut.math.tvt.kamm.Intro"
 		            classpathref="test.classpath"
 		            fork="yes">
 		          <jvmarg value="-Xdebug" />
@@ -132,18 +130,18 @@
 	</target>
 	
 	<target name="runc" depends="build" description="Run the application (console)">
-		<java classname="ee.ut.math.tvt.[team].Intro" classpathref="test.classpath" fork="yes">
+		<java classname="ee.ut.math.tvt.kamm.Intro" classpathref="test.classpath" fork="yes">
 			<arg value="console" />
 		</java>
 	</target>
 	
 	
-	<target name="git_commit">
-		<git-publish/>
+	<target name="git-publish">
+		<git-publish message="@{message}"/>
 	</target>
 	
-	<target name="git_tag">
-		<git-tag/>
+	<target name="git-tag">
+		<git-tag tag="@{tag}" message="@{message}"/>
 	</target>
 	
 	

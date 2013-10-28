@@ -74,6 +74,7 @@ public class HistoryTab {
 							model.getSoldItemHistoryModel()
 									.fireTableDataChanged();
 							soldItemsWindow.setVisible(true);
+							table.getSelectionModel().clearSelection();
 						}
 					}
 

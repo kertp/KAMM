@@ -61,7 +61,7 @@ public class SubmitPurchaseUI {
 		raam.setVisible(b);
 	}
 
-	public JDialog drawSubmitWindow() {
+	public void drawSubmitWindow() {
 		raam.setModal(true);
 		raam.setResizable(false);
 		raam.setLayout(new GridLayout(4, 2));
@@ -159,6 +159,5 @@ public class SubmitPurchaseUI {
 		});
 		raam.add(confirm);
 		raam.add(cancel);
-		return raam;
 	}
 }

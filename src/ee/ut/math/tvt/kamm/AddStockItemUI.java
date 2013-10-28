@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -182,8 +183,10 @@ public class AddStockItemUI {
 					Long idv = Long.valueOf(id.getText());
 					String namev = name.getText();
 					String descriptionv = description.getText();
-					float pricev = Float.parseFloat(price.getText());
+					double pricev = Math.round(Float.parseFloat(price.getText())*100.0)/100.0;
 					int quantityv = Integer.parseInt(quantity.getText());
+					if (quantityv < 0)
+						throw new NumberFormatException();
 					StockItem stockItem = new StockItem(idv, namev,
 							descriptionv, pricev, quantityv);
 					model.getWarehouseTableModel().addItem(stockItem);
