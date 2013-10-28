@@ -52,7 +52,9 @@
 	            </args>
 	        </git>
 	    	<input message="username" addproperty="username"/>
-	    	<input message="Password" addproperty="password"/>
+	    	<input message="password:" addproperty="password">
+	    	    <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+	    	</input>
 	        <git command="push">
 	            <args>
 	            	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
@@ -62,13 +64,13 @@
     </macrodef>
 	
 	 <macrodef name="git-tag">
-	    <attribute name="tag" />
-	 	<attribute name="message" />
 	    <attribute name="dir" default = ""/>
 	    <attribute name="options" default="" />
 	    <attribute name="failerror" default="false" />
 	 	<attribute name="files" default="." />
 	    <sequential>
+	    	<input message="message" addproperty="message"/>
+	    	<input message="tag" addproperty="tag"/>
 	    	<echo message="Git create tag ${tag} with message ${message}" />
 	        <git command="tag -a ${tag} -m ${message}"></git>
 	    	<git command="push --tags"></git>
