@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
@@ -38,13 +39,16 @@ public class AddStockItemUI {
 
 	private String price_text = "";
 	private boolean kala = false;
+	
+	SalesDomainController dc;
 
 	public AddStockItemUI(SalesSystemModel model, JFrame parent,
-			JComboBox<String> productMenu) {
+			JComboBox<String> productMenu, SalesDomainController dc) {
 		this.model = model;
 		this.parent = parent;
 		this.panel = new JDialog(parent);
 		this.productMenu = productMenu;
+		this.dc = dc;
 	}
 
 	public void draw() {
@@ -190,6 +194,7 @@ public class AddStockItemUI {
 					StockItem stockItem = new StockItem(idv, namev,
 							descriptionv, pricev, quantityv);
 					model.getWarehouseTableModel().addItem(stockItem);
+					dc.loadWarehouseState().add(stockItem);
 					productMenu.addItem(namev);
 					setVisible(false);
 				} catch (NumberFormatException ex) {
