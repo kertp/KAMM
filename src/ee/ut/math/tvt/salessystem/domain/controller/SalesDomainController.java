@@ -2,7 +2,7 @@ package ee.ut.math.tvt.salessystem.domain.controller;
 
 import java.util.List;
 
-import ee.ut.math.tvt.kamm.SubmittedPurchase;
+import ee.ut.math.tvt.salessystem.domain.data.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
