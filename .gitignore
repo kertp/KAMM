@@ -1,4 +1,5 @@
 /bin
 /build
 data/POSdb.lck
+data/POSdb.log
 data/POSdb.properties
