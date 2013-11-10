@@ -28,6 +28,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		stockItems = new ArrayList<StockItem>();
 		purchaseList = new ArrayList<SubmittedPurchase>();
 		stockItems = service.getStockItems();
+		//purchaseList = service.getSubmittedPurchases();
 		//stockItems.addAll(service.getStockItems());
 	}
 
@@ -43,9 +44,11 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 				}
 			}
 		}
-		purchaseList.add(new SubmittedPurchase(new Date(), sum, goods));
+		SubmittedPurchase purchase = new SubmittedPurchase(new Date(), sum, goods);
+		purchaseList.add(purchase);
 		for (StockItem s: stockItems)
 			service.update(s);
+		service.addItem(purchase);
 		// Let's assume we have checked and found out that the buyer is
 		// underaged and
 		// cannot buy chupa-chups
@@ -74,7 +77,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	}
 	
 	public void addStockItem(StockItem stockitem) {
-		service.addStockItem(stockitem);
+		service.addItem(stockitem);
 	}
+	
+	
 
 }

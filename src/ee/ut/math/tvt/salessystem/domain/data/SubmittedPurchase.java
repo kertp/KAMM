@@ -15,6 +15,7 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "DATE")
 	private String date;
@@ -27,7 +28,7 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 
 
 	public SubmittedPurchase(Date date, float total, List<SoldItem> soldItems) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		this.date = dateFormat.format(date);
 		this.time = timeFormat.format(date);

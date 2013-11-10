@@ -9,6 +9,7 @@ import org.hibernate.Session;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.domain.data.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.util.HibernateUtil;
 
 
@@ -28,22 +29,23 @@ public class HibernateDataService {
 		return result;
 	}
 	
-	public List<SoldItem> getSubmittedPurchases() {
-		List<SoldItem> result = session.createQuery("from SubmittedPurchase").list();
+	public List<SubmittedPurchase> getSubmittedPurchases() {
+		List<SubmittedPurchase> result = session.createQuery("from SubmittedPurchase").list();
 		return result;
 	}
 	
-	public void update(StockItem stockitem) {
+	public void update(Object stockitem) {
 		session.beginTransaction();
 		session.update(stockitem);
 		session.getTransaction().commit();
 	}
 	
-	public void addStockItem(StockItem stockitem) {
+	public void addItem(Object stockitem) {
 		session.beginTransaction();
 		session.save(stockitem);
 		session.getTransaction().commit();
 	}
 
+	
 
 }
