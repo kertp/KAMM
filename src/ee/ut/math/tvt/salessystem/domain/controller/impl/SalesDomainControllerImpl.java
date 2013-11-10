@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import ee.ut.math.tvt.kamm.HibernateDataService;
 import ee.ut.math.tvt.kamm.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
@@ -18,7 +19,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 	private List<SubmittedPurchase> purchaseList;
 	private List<StockItem> stockItems;
-
+	HibernateDataService service = new HibernateDataService();
 	public SalesDomainControllerImpl() {
 		stockItems = new ArrayList<StockItem>();
 		purchaseList = new ArrayList<SubmittedPurchase>();

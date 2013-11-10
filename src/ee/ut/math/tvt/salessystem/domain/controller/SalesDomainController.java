@@ -47,5 +47,7 @@ public interface SalesDomainController {
 			throws VerificationFailedException;
 
 	public List<SubmittedPurchase> loadHistory();
+	
+	public void endSession();
 
 }
