@@ -16,13 +16,18 @@ public class HibernateDataService {
 
 	private Session session = HibernateUtil.currentSession();
 
-	public List<StockItem> getStudents() {
-		List<StockItem> result = session.createQuery("from Student").list();
+	public List<StockItem> getStockItems() {
+		List<StockItem> result = session.createQuery("from StockItem").list();
 		return result;
 	}
 
-	public List<SoldItem> getCourses() {
-		List<SoldItem> result = session.createQuery("from Course").list();
+	public List<SoldItem> getSoldItems() {
+		List<SoldItem> result = session.createQuery("from SoldItem").list();
+		return result;
+	}
+	
+	public List<SoldItem> getSubmittedPurchases() {
+		List<SoldItem> result = session.createQuery("from SubmittedPurchase").list();
 		return result;
 	}
 
