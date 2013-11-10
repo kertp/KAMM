@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import ee.ut.math.tvt.kamm.HibernateDataService;
-import ee.ut.math.tvt.kamm.SubmittedPurchase;
+import ee.ut.math.tvt.salessystem.domain.data.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
