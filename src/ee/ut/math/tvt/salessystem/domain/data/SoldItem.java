@@ -2,7 +2,10 @@ package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -28,6 +31,9 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	private double price;
 	@Column(name = "STOCKITEM_ID")
 	private Long stockItemId;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="PURCHASE_ID")
+	private SubmittedPurchase purchase;
 
 	public SoldItem(StockItem stockItem, int quantity) {
 		this.stockItem = stockItem;
@@ -41,6 +47,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

@@ -4,15 +4,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.*;
+
 import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 
+@Entity
+@Table(name = "SUBMITTEDPURCHASE")
 public class SubmittedPurchase implements Cloneable, DisplayableItem {
 
+	@Id
+	@Column(name = "ID")
 	private Long id;
+	@Column(name = "DATE")
 	private String date;
+	@Column(name = "TIME")
 	private String time;
+	@Transient
 	private float total;
+	@OneToMany(mappedBy = "purchase")
 	private List<SoldItem> soldItems;
 
 
