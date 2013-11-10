@@ -72,36 +72,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	public List<StockItem> loadWarehouseState() {
 		return stockItems;
 	}
+	
+	public void addStockItem(StockItem stockitem) {
+		service.addStockItem(stockitem);
+	}
 
-
-
-    /*public List<StockItem> getProductList() {
-        log.info("Getting products!");
-        stockItems = getSimpleJdbcTemplate().query(
-                "select id, description, price from products", 
-                new ProductMapper());
-        return stockItems;
-    }
-
-    public void saveProduct(StockItem prod) {
-        log.info("Saving product: " + prod.getDescription());
-        int count = getSimpleJdbcTemplate().update(
-            "update products set description = :description, price = :price where id = :id",
-            new MapSqlParameterSource().addValue("description", prod.getDescription())
-                .addValue("price", prod.getPrice())
-                .addValue("id", prod.getId()));
-        log.info("Rows affected: " + count);
-    }
-    
-    private static class ProductMapper implements ParameterizedRowMapper<StockItem>{
-
-        public StockItem mapRow(ResultSet rs, int rowNum) throws SQLException {
-            StockItem prod = new StockItem();
-            prod.setId(rs.getLong("id"));
-            prod.setDescription(rs.getString("description"));
-            prod.setPrice(new Double(rs.getDouble("price")));
-            return prod;
-        }
-
-    }*/
 }

@@ -37,7 +37,12 @@ public class HibernateDataService {
 		session.beginTransaction();
 		session.update(stockitem);
 		session.getTransaction().commit();
-		
+	}
+	
+	public void addStockItem(StockItem stockitem) {
+		session.beginTransaction();
+		session.save(stockitem);
+		session.getTransaction().commit();
 	}
 
 

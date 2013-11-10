@@ -195,6 +195,7 @@ public class AddStockItemUI {
 							descriptionv, pricev, quantityv);
 					model.getWarehouseTableModel().addItem(stockItem);
 					dc.loadWarehouseState().add(stockItem);
+					dc.addStockItem(stockItem);
 					productMenu.addItem(namev);
 					setVisible(false);
 				} catch (NumberFormatException ex) {
