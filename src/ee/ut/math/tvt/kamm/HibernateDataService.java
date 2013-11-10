@@ -3,6 +3,8 @@ package ee.ut.math.tvt.kamm;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.hibernate.Session;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
@@ -29,6 +31,13 @@ public class HibernateDataService {
 	public List<SoldItem> getSubmittedPurchases() {
 		List<SoldItem> result = session.createQuery("from SubmittedPurchase").list();
 		return result;
+	}
+	
+	public void update(StockItem stockitem) {
+		session.beginTransaction();
+		session.update(stockitem);
+		session.getTransaction().commit();
+		
 	}
 
 
