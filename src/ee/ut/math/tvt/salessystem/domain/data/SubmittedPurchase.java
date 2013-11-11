@@ -27,12 +27,16 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 	private List<SoldItem> soldItems;
 
 
-	public SubmittedPurchase(Date date, float total, List<SoldItem> soldItems) {
+	public SubmittedPurchase(Date date, List<SoldItem> soldItems) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		this.date = dateFormat.format(date);
 		this.time = timeFormat.format(date);
-		this.total = total;
+		total = 0;
+		for (SoldItem s : soldItems) {
+			total += s.getSum();
+		}
+		System.out.println(total);
 		this.soldItems = soldItems;
 	}
 	

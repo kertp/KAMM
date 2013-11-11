@@ -30,20 +30,18 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		purchaseList = new ArrayList<SubmittedPurchase>();
 		stockItems.addAll(service.getStockItems());
 		purchaseList.addAll(service.getSubmittedPurchases());
-		//soldItems.addAll(service.getSoldItems());
-		/*for (int i = 0; i < soldItems.size(); i++) {
-			for (int j = 0; j < purchaseList.size(); j++) {
-				//if (purchaseList.get(j))
+		for (SubmittedPurchase p : purchaseList) {
+			float total = 0;
+			for (SoldItem s : p.getSoldItems()) {
+				total += s.getSum();
 			}
-			
-		}*/
+			p.setTotal(total);
+		}
 	}
 
 	public void submitCurrentPurchase(List<SoldItem> goods)
 			throws VerificationFailedException {
-		float sum = 0;
 		for (SoldItem item : goods) {
-			sum += item.getSum();
 			for (StockItem stockitem : stockItems) {
 				if (stockitem.getId() == item.getId()) {
 					stockitem.setQuantity(stockitem.getQuantity()
@@ -51,12 +49,13 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 				}
 			}
 		}
-		SubmittedPurchase purchase = new SubmittedPurchase(new Date(), sum, goods);
+		SubmittedPurchase purchase = new SubmittedPurchase(new Date(), goods);
 		purchaseList.add(purchase);
 		for (StockItem s: stockItems)
 			service.update(s);
 		service.addItem(purchase);
 		for (SoldItem s : purchase.getSoldItems()) {
+			s.setPurchase(purchase);
 			service.addItem(s);
 		}
 		// Let's assume we have checked and found out that the buyer is

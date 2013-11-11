@@ -3,6 +3,8 @@ package ee.ut.math.tvt.salessystem.domain.data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
 
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@Transient
 	private StockItem stockItem;
@@ -43,7 +46,12 @@ public class SoldItem implements Cloneable, DisplayableItem {
 		this.id = stockItem.getId();
 		this.stockItemId = stockItem.getId();
 	}
-
+	public SoldItem() {
+	}
+	
+	public void setPurchase(SubmittedPurchase purchase) {
+		this.purchase = purchase;
+	}
 	public Long getId() {
 		return id;
 	}
