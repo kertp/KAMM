@@ -15,7 +15,9 @@ import javax.swing.table.JTableHeader;
 
 //import org.apache.log4j.Logger;
 
+
 import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 /**
@@ -31,10 +33,13 @@ public class HistoryTab {
 
 	private SoldItemHistoryUI soldItemsWindow;
 
-	public HistoryTab(SalesSystemModel model, SoldItemHistoryUI soldItemsWindow) {
+	public HistoryTab(SalesSystemModel model, SoldItemHistoryUI soldItemsWindow, SalesDomainController dc) {
 		this.model = model;
 		this.soldItemsWindow = soldItemsWindow;
 		soldItemsWindow.draw();
+		model.getHistoryTableModel().populateWithData(
+				dc.loadHistory());
+		model.getHistoryTableModel().fireTableDataChanged();
 	}
 
 	public Component draw() {
