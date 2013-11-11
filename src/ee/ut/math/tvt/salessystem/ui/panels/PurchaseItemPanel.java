@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.panels;
 
+import ee.ut.math.tvt.kamm.ComboItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -9,6 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.swing.BorderFactory;
@@ -33,7 +36,7 @@ public class PurchaseItemPanel extends JPanel {
 	private JTextField quantityField;
 	private JTextField nameField;
 	private JTextField priceField;
-	private JComboBox<String> productMenu;
+	private JComboBox<ComboItem> productMenu;
 
 	private JButton addItemButton;
 
@@ -47,7 +50,7 @@ public class PurchaseItemPanel extends JPanel {
 	 *            composite model of the warehouse and the shopping cart.
 	 */
 	public PurchaseItemPanel(SalesSystemModel model,
-			JComboBox<String> productMenu) {
+			JComboBox<ComboItem> productMenu) {
 		this.model = model;
 		this.productMenu = productMenu;
 
@@ -105,11 +108,18 @@ public class PurchaseItemPanel extends JPanel {
 
 		panel.add(new JLabel("Products:"));
 		panel.add(productMenu);
-		productMenu.addItem("");
+		
+		productMenu.addItem(new ComboItem("", "0"));
+		for (int i = 0; i < model.getWarehouseTableModel().getRowCount(); i++) {
+			productMenu.addItem(new ComboItem(model.getWarehouseTableModel().getValueAt(i, 1)
+					.toString(),model.getWarehouseTableModel().getValueAt(i, 0)
+					.toString()));
+		}
+		/*productMenu.addItem("");
 		for (int i = 0; i < model.getWarehouseTableModel().getRowCount(); i++) {
 			productMenu.addItem(model.getWarehouseTableModel().getValueAt(i, 1)
 					.toString());
-		}
+		}*/
 
 		// - amount
 		panel.add(new JLabel("Amount:"));
@@ -206,7 +216,8 @@ public class PurchaseItemPanel extends JPanel {
 		quantityField.setText("1");
 		nameField.setText("");
 		priceField.setText("");
-		productMenu.setSelectedItem("");
+		//productMenu.setSelectedItem("");
+		productMenu.setSelectedIndex(0);
 	}
 
 	/*

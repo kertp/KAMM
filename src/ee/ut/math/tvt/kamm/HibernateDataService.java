@@ -1,9 +1,6 @@
 package ee.ut.math.tvt.kamm;
 
-import java.util.Collections;
 import java.util.List;
-
-import javax.persistence.EntityManager;
 
 import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;

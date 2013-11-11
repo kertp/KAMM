@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.kamm.ComboItem;
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
@@ -43,11 +44,11 @@ public class PurchaseTab {
 
 	private SubmitPurchaseUI submitWindow;
 
-	private JComboBox<String> productMenu;
+	private JComboBox<ComboItem> productMenu;
 
 	public PurchaseTab(SalesDomainController controller,
 			SalesSystemModel model, SubmitPurchaseUI submitWindow,
-			JComboBox<String> productMenu) {
+			JComboBox<ComboItem> productMenu) {
 		this.domainController = controller;
 		this.model = model;
 		this.submitWindow = submitWindow;

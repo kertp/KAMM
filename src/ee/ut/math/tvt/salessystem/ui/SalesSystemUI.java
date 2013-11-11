@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 
 import ee.ut.math.tvt.kamm.AddStockItemUI;
+import ee.ut.math.tvt.kamm.ComboItem;
 import ee.ut.math.tvt.kamm.SoldItemHistoryUI;
 import ee.ut.math.tvt.kamm.SubmitPurchaseUI;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
@@ -46,7 +47,8 @@ public class SalesSystemUI extends JFrame {
 	private SoldItemHistoryUI soldItemsWindow;
 	private AddStockItemUI addItemWindow;
 
-	private JComboBox<String> productMenu;
+	//private JComboBox<String> productMenu;
+	private JComboBox<ComboItem> productMenu;
 
 	/**
 	 * Constructs sales system GUI.
@@ -58,7 +60,8 @@ public class SalesSystemUI extends JFrame {
 		this.domainController = domainController;
 		this.model = new SalesSystemModel(domainController);
 
-		productMenu = new JComboBox<String>();
+		productMenu = new JComboBox<ComboItem>();
+		//productMenu = new JComboBox();
 
 		submitWindow = new SubmitPurchaseUI(this);
 		soldItemsWindow = new SoldItemHistoryUI(model, this);

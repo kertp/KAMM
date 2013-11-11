@@ -35,7 +35,7 @@ public class AddStockItemUI {
 	private JButton confirm = new JButton("Confirm");
 	private JButton cancel = new JButton("Cancel");
 
-	private JComboBox<String> productMenu;
+	private JComboBox<ComboItem> productMenu;
 
 	private String price_text = "";
 	private boolean kala = false;
@@ -43,7 +43,7 @@ public class AddStockItemUI {
 	SalesDomainController dc;
 
 	public AddStockItemUI(SalesSystemModel model, JFrame parent,
-			JComboBox<String> productMenu, SalesDomainController dc) {
+			JComboBox<ComboItem> productMenu, SalesDomainController dc) {
 		this.model = model;
 		this.parent = parent;
 		this.panel = new JDialog(parent);
@@ -196,7 +196,15 @@ public class AddStockItemUI {
 					model.getWarehouseTableModel().addItem(stockItem);
 					dc.loadWarehouseState().add(stockItem);
 					dc.addStockItem(stockItem);
-					productMenu.addItem(namev);
+					boolean olemas = false;
+					for (int i = 0; i < productMenu.getItemCount(); i++) {
+						if (Long.parseLong(productMenu.getItemAt(i).getId()) == idv) {
+							olemas = true;
+							break;
+						}
+					}
+					if (!olemas)
+						productMenu.addItem(new ComboItem(namev, String.valueOf(idv)));
 					setVisible(false);
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null, "Numbers incorrect!");
