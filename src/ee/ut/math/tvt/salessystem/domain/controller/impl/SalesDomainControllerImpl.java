@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.NonUniqueObjectException;
 
 import ee.ut.math.tvt.kamm.HibernateDataService;
 import ee.ut.math.tvt.salessystem.domain.data.SubmittedPurchase;
@@ -23,7 +24,6 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	private static final Logger log = Logger.getLogger(SalesSystemUI.class);
 	private List<SubmittedPurchase> purchaseList;
 	private List<StockItem> stockItems;
-	private List<SoldItem> soldItems;
 	HibernateDataService service = new HibernateDataService();
 	public SalesDomainControllerImpl() {
 		stockItems = new ArrayList<StockItem>();
@@ -86,7 +86,11 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	}
 	
 	public void addStockItem(StockItem stockitem) {
-		service.addItem(stockitem);
+		try {
+			service.addItem(stockitem);
+		} catch (NonUniqueObjectException e) {
+			service.update(stockitem);
+		}
 	}
 	
 	

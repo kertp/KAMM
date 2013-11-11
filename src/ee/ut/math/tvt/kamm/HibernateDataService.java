@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
@@ -41,9 +42,14 @@ public class HibernateDataService {
 	}
 	
 	public void addItem(Object stockitem) {
-		session.beginTransaction();
-		session.save(stockitem);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.save(stockitem);
+			session.getTransaction().commit();
+		} catch (NonUniqueObjectException e) {
+			session.getTransaction().commit();
+			//update(stockitem);
+		}
 	}
 
 	
