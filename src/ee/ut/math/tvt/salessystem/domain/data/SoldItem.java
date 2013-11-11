@@ -31,7 +31,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	private double price;
 	@Column(name = "STOCKITEM_ID")
 	private Long stockItemId;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="PURCHASE_ID")
 	private SubmittedPurchase purchase;
 
