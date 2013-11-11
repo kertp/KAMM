@@ -35,6 +35,9 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 		this.total = total;
 		this.soldItems = soldItems;
 	}
+	
+	public SubmittedPurchase(){
+	}
 
 	public List<SoldItem> getSoldItems() {
 		return soldItems;

@@ -23,13 +23,20 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	private static final Logger log = Logger.getLogger(SalesSystemUI.class);
 	private List<SubmittedPurchase> purchaseList;
 	private List<StockItem> stockItems;
+	private List<SoldItem> soldItems;
 	HibernateDataService service = new HibernateDataService();
 	public SalesDomainControllerImpl() {
 		stockItems = new ArrayList<StockItem>();
 		purchaseList = new ArrayList<SubmittedPurchase>();
-		stockItems = service.getStockItems();
-		//purchaseList = service.getSubmittedPurchases();
-		//stockItems.addAll(service.getStockItems());
+		stockItems.addAll(service.getStockItems());
+		purchaseList.addAll(service.getSubmittedPurchases());
+		//soldItems.addAll(service.getSoldItems());
+		/*for (int i = 0; i < soldItems.size(); i++) {
+			for (int j = 0; j < purchaseList.size(); j++) {
+				//if (purchaseList.get(j))
+			}
+			
+		}*/
 	}
 
 	public void submitCurrentPurchase(List<SoldItem> goods)
@@ -49,6 +56,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		for (StockItem s: stockItems)
 			service.update(s);
 		service.addItem(purchase);
+		for (SoldItem s : purchase.getSoldItems()) {
+			service.addItem(s);
+		}
 		// Let's assume we have checked and found out that the buyer is
 		// underaged and
 		// cannot buy chupa-chups
