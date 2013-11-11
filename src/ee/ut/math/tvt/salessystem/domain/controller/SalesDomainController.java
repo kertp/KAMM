@@ -2,8 +2,6 @@ package ee.ut.math.tvt.salessystem.domain.controller;
 
 import java.util.List;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
-
 import ee.ut.math.tvt.salessystem.domain.data.SubmittedPurchase;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
