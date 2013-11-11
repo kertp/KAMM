@@ -51,8 +51,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		}
 		SubmittedPurchase purchase = new SubmittedPurchase(new Date(), goods);
 		purchaseList.add(purchase);
-		for (StockItem s: stockItems)
+		for (StockItem s: stockItems) {
 			service.update(s);
+		}
 		service.addItem(purchase);
 		for (SoldItem s : purchase.getSoldItems()) {
 			s.setPurchase(purchase);

@@ -36,9 +36,13 @@ public class HibernateDataService {
 	}
 	
 	public void update(Object stockitem) {
+		try {
 		session.beginTransaction();
 		session.update(stockitem);
 		session.getTransaction().commit();
+		} catch (NonUniqueObjectException e) {
+			session.getTransaction().commit();
+		}
 	}
 	
 	public void addItem(Object stockitem) {
@@ -48,7 +52,6 @@ public class HibernateDataService {
 			session.getTransaction().commit();
 		} catch (NonUniqueObjectException e) {
 			session.getTransaction().commit();
-			//update(stockitem);
 		}
 	}
 
