@@ -166,7 +166,7 @@ public class PurchaseTab {
 	}
 
 	/** Event handler for the <code>submit purchase</code> event. */
-	protected void submitPurchaseButtonClicked() {
+	public void submitPurchaseButtonClicked() {
 		if (!model.getCurrentPurchaseTableModel().getTableRows().isEmpty()) {
 			float sum = 0;
 			for (SoldItem item : model.getCurrentPurchaseTableModel()

@@ -4,7 +4,9 @@
 	<property name="build.dir" value="${basedir}/build"/>
 	<property name="build.dr" value="${basedir}/build"/>
 	<property name="build.classes.dir" value="${build.dir}/classes"/>
+	<property name="build.test.dir" value="${build.dir}/test"/>
 	<property name="src.dir" value="${basedir}/src"/>
+	<property name="test.dir"   value="${basedir}/test"/>
 	<property name="dist.dir" value="${basedir}/dist"/>
 	<property name="conf.dir" value="${basedir}/etc"/>
 	<property name="doc.dir" value="${build.dir}/doc"/>
@@ -131,6 +133,7 @@
 		<tstamp />
 		<!-- Create the build directory structure used by compile -->
 		<mkdir dir="${build}" />
+		<mkdir dir="${build.test.dir}"/>
 	</target>
 
 	<target name="build" description="Build the system">
@@ -225,6 +228,12 @@
 
 
 	</target>
+	
+	<path id="libs">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
 	
 	<target name="build-tests" depends="build" description="Build the system">
 		<javac

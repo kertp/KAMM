@@ -68,6 +68,9 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 	}
 
 	public float getTotal() {
+		for (SoldItem soldItem : soldItems) {
+			total += soldItem.getSum();
+		}
 		return total;
 	}
 

@@ -70,10 +70,10 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 			SoldItem item = getItemById(soldItem.getId());
 			int newquantity = item.getQuantity() + soldItem.getQuantity();
 			if (stockquantity < newquantity) {
-				JOptionPane.showMessageDialog(null, "Not enough stock!");
-				log.debug("Stock of " + soldItem.getName() + " is "
-						+ stockquantity + ". Cannot increase quantity to "
-						+ newquantity);
+					JOptionPane.showMessageDialog(null, "Not enough stock!");
+					log.debug("Stock of " + soldItem.getName() + " is "
+							+ stockquantity + ". Cannot increase quantity to "
+							+ newquantity);
 			} else {
 				item.setQuantity(item.getQuantity() + soldItem.getQuantity());
 				log.debug("Found existing item " + soldItem.getName()
@@ -82,10 +82,10 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 			}
 		} catch (NoSuchElementException e) {
 			if (stockquantity < soldItem.getQuantity()) {
-				JOptionPane.showMessageDialog(null, "Not enough stock!");
-				log.debug("Stock of " + soldItem.getName() + " is "
-						+ stockquantity + ". Cannot add "
-						+ soldItem.getQuantity() + " items");
+					JOptionPane.showMessageDialog(null, "Not enough stock!");
+					log.debug("Stock of " + soldItem.getName() + " is "
+							+ stockquantity + ". Cannot add "
+							+ soldItem.getQuantity() + " items");
 			} else {
 				rows.add(soldItem);
 				log.debug("Added " + soldItem.getName() + " quantity of "
