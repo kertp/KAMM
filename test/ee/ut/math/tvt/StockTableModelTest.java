@@ -15,39 +15,35 @@ import ee.ut.math.tvt.salessystem.ui.model.StockTableModel;
 
 public class StockTableModelTest {
 
-	private PurchaseInfoTableModel table;
-	private StockTableModel table2;
+	private StockTableModel table;
 	private StockItem stockItem;
 	
 	@Before
 	public void setUp() {
-		table = new PurchaseInfoTableModel();
-		table2= new StockTableModel();
+		table= new StockTableModel();
 		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0, 10);
 		BasicConfigurator.configure();
 		
 	}
 	
-	@Test
-	public void testValidateNameUniqueness() {
-		
-	}
+	// testHasEnoughInStock on klassis PurchaseInfoTableModel
 	
 	@Test
-	public void testHasEnoughInStock() {
-//		purchaseTab.submitPurchaseButtonClicked();
-		SoldItem soldItem = new SoldItem(stockItem, 11);
-		table.addItem(soldItem, stockItem.getQuantity());
-		assertEquals(table.getRowCount(), 0);
+	public void testCanHaveSameNames() {  		// testValidateNameUniqueness asemel, sest meil on lubatud
+												// mitu toodet sama nimega.
+		StockItem stockItem2 = new StockItem(2l, "Lauaviin", "jee", 6.0, 15);
+		table.addItem(stockItem);
+		table.addItem(stockItem2);
+		assertEquals(table.getValueAt(0, 1), table.getValueAt(1, 1));
 	}
 	
 	@Test
 	public void testGetItemByIdWhenItemExists() {
-		table2.addItem(stockItem);
-		assertEquals(table2.getItemById(1l).toString(), stockItem.toString());
+		table.addItem(stockItem);
+		assertEquals(table.getItemById(1l).toString(), stockItem.toString());
 	}
 	@Test(expected= NoSuchElementException.class)
 	public void testGetItemByIdWhenThrowsException() {
-		table2.getItemById(1l);
+		table.getItemById(1l);
 	}
 }

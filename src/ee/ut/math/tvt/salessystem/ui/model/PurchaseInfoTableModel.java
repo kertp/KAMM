@@ -58,6 +58,10 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		return buffer.toString();
 	}
 
+	public boolean notEnoughStock() {
+		return false;
+	}
+	
 	/**
 	 * Add new StockItem to table.
 	 */
