@@ -2,8 +2,6 @@ package ee.ut.math.tvt.salessystem.ui.model;
 
 import java.util.NoSuchElementException;
 
-import javax.swing.JOptionPane;
-
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
@@ -58,43 +56,47 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		return buffer.toString();
 	}
 
-	public boolean notEnoughStock() {
+	public boolean notEnoughStock(SoldItem soldItem, int stockquantity) {
+		try {
+			SoldItem item = getItemById(soldItem.getId());
+			int newquantity = item.getQuantity() + soldItem.getQuantity();
+			if (stockquantity < newquantity)
+				return true;
+		} catch (NoSuchElementException e) {
+			
+		}
 		return false;
 	}
 	
 	/**
 	 * Add new StockItem to table.
 	 */
-	public void addItem(final SoldItem soldItem, final int stockquantity) {
-		/**
-		 * XXX In case such stockItem already exists increase the quantity of
-		 * the existing stock.
-		 */
+	public boolean addItem(final SoldItem soldItem, final int stockquantity) {
 		try {
 			SoldItem item = getItemById(soldItem.getId());
 			int newquantity = item.getQuantity() + soldItem.getQuantity();
 			if (stockquantity < newquantity) {
-					JOptionPane.showMessageDialog(null, "Not enough stock!");
-					log.debug("Stock of " + soldItem.getName() + " is "
-							+ stockquantity + ". Cannot increase quantity to "
-							+ newquantity);
+				return false;
 			} else {
 				item.setQuantity(item.getQuantity() + soldItem.getQuantity());
 				log.debug("Found existing item " + soldItem.getName()
 						+ " increased quantity by " + soldItem.getQuantity());
 				fireTableDataChanged();
+				return true;
 			}
 		} catch (NoSuchElementException e) {
 			if (stockquantity < soldItem.getQuantity()) {
-					JOptionPane.showMessageDialog(null, "Not enough stock!");
-					log.debug("Stock of " + soldItem.getName() + " is "
-							+ stockquantity + ". Cannot add "
-							+ soldItem.getQuantity() + " items");
+				return false;
+//					JOptionPane.showMessageDialog(null, "Not enough stock!");
+//					log.debug("Stock of " + soldItem.getName() + " is "
+//							+ stockquantity + ". Cannot add "
+//							+ soldItem.getQuantity() + " items");
 			} else {
 				rows.add(soldItem);
 				log.debug("Added " + soldItem.getName() + " quantity of "
 						+ soldItem.getQuantity());
 				fireTableDataChanged();
+				return true;
 			}
 		}
 	}

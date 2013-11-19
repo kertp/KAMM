@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.kamm.ComboItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 import java.awt.GridBagConstraints;
@@ -17,10 +18,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import org.apache.log4j.Logger;
 
 /**
  * Purchase pane + shopping cart table UI.
@@ -28,6 +32,9 @@ import javax.swing.JTextField;
 public class PurchaseItemPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger log = Logger
+			.getLogger(PurchaseInfoTableModel.class);
 
 	// Text field on the dialogPane
 	private JTextField barCodeField;
@@ -191,8 +198,13 @@ public class PurchaseItemPanel extends JPanel {
 		}
 		if (stockItem != null && soldquantity > 0) {
 			int stockquantity = stockItem.getQuantity();
-			model.getCurrentPurchaseTableModel().addItem(
-					new SoldItem(stockItem, soldquantity), stockquantity);
+			if (!model.getCurrentPurchaseTableModel().addItem(
+					new SoldItem(stockItem, soldquantity), stockquantity)) {
+				JOptionPane.showMessageDialog(null, "Not enough stock!");
+				log.debug("Stock of " + stockItem.getName() + " is "
+						+ stockquantity + ". Cannot increase quantity to "
+						+ soldquantity);
+			}
 		}
 	}
 

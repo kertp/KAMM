@@ -36,7 +36,6 @@ public class SubmittedPurchase implements Cloneable, DisplayableItem {
 		for (SoldItem s : soldItems) {
 			total += s.getSum();
 		}
-		System.out.println(total);
 		this.soldItems = soldItems;
 	}
 	

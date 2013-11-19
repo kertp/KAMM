@@ -1,6 +1,6 @@
 package ee.ut.math.tvt;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,31 +11,45 @@ import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 
 public class PurchaseInfoTableModelTest {
 	
-	private PurchaseInfoTableModel table;
 	private StockItem stockItem;
+	private StockItem stockItem2;
+	PurchaseInfoTableModel table;
 	
 	@Before
 	public void setUp() {
 		table = new PurchaseInfoTableModel();
 		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0, 10);
+		stockItem2 = new StockItem(2l, "Pannkook", "", 2.5, 100);
+	}
+	@Test
+	public void testAddDifferentItemsToCart() {
+		SoldItem soldItem = new SoldItem(stockItem, 2);
+		SoldItem soldItem2 = new SoldItem(stockItem2, 1);
+		table.addItem(soldItem, stockItem.getQuantity());
+		table.addItem(soldItem2, stockItem2.getQuantity());
+		assertEquals(table.getRowCount(), 2);
 	}
 	
 	@Test
-	public void addOneItemToCartTest() {
-		
+	public void testAddSameItemsToCart() {
+		SoldItem soldItem = new SoldItem(stockItem, 1);
+		SoldItem soldItem2 = new SoldItem(stockItem, 1);
+		table.addItem(soldItem, stockItem.getQuantity());
+		table.addItem(soldItem2, stockItem.getQuantity());
+		assertEquals(table.getRowCount(), 1);
 	}
-	@Test
-	public void addMultibleItemsToCartTest() {
-		
-	}
-	@Test
-	public void addItemWithInvalidQuantity() {
-		
-	}
+	
+
+//	@Test
+//	public void testAddItemWithInvalidQuantity() {
+//		SoldItem soldItem = new SoldItem(stockItem, -1);
+//		table.addItem(soldItem, stockItem.getQuantity());
+//		assertEquals(table.getValueAt(1, 4), 1);
+//	}
 	@Test
 	public void testHasEnoughInStock() {
+		PurchaseInfoTableModel table = new PurchaseInfoTableModel();
 		SoldItem soldItem = new SoldItem(stockItem, 11);
-		table.addItem(soldItem, stockItem.getQuantity());
-		assertEquals(table.getRowCount(), 0);
+		assertTrue(!table.addItem(soldItem, stockItem.getQuantity()));
 	}
 }
