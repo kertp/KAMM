@@ -20,8 +20,8 @@ public class SubmittedPurchaseTest {
 	
 	@Before
 	public void setUp() {
-		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0, 10);
-		stockItem2 = new StockItem (2l, "Kartul", "paha", 1.0, 100);
+		stockItem = new StockItem(111l, "Lauaviin", "hea", 5.0, 10);
+		stockItem2 = new StockItem (112l, "Kartul", "paha", 1.0, 100);
 	}
 	
 	@Test

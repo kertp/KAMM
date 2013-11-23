@@ -12,7 +12,7 @@ public class StockItemTest {
 	public StockItem stockItem;
 	@Before
 	public void setUp() {
-		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0, 10);
+		stockItem = new StockItem(105l, "Lauaviin", "hea", 5.0, 10);
 	}
 	
 	@Test
@@ -23,7 +23,7 @@ public class StockItemTest {
 	
 	@Test
 	public void testGetColumn() {
-		assertEquals(stockItem.getColumn(0), 1l);
+		assertEquals(stockItem.getColumn(0), 105l);
 		assertEquals(stockItem.getColumn(1), "Lauaviin");
 		assertEquals(stockItem.getColumn(2), 5.0);
 		assertEquals(stockItem.getColumn(3), 10);

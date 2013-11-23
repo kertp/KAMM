@@ -14,7 +14,7 @@ public class SoldItemTest {
 	
 	@Before
 	public void setUp() {
-		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0);
+		stockItem = new StockItem(104l, "Lauaviin", "hea", 5.0);
 	}
 	
 	@Test

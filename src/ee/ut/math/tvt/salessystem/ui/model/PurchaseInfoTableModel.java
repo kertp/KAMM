@@ -12,8 +12,8 @@ import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger
-			.getLogger(PurchaseInfoTableModel.class);
+//	private static final Logger log = Logger
+//			.getLogger(PurchaseInfoTableModel.class);
 
 	public PurchaseInfoTableModel() {
 		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum" });
@@ -79,8 +79,8 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 				return false;
 			} else {
 				item.setQuantity(item.getQuantity() + soldItem.getQuantity());
-				log.debug("Found existing item " + soldItem.getName()
-						+ " increased quantity by " + soldItem.getQuantity());
+//				log.debug("Found existing item " + soldItem.getName()
+//						+ " increased quantity by " + soldItem.getQuantity());
 				fireTableDataChanged();
 				return true;
 			}
@@ -93,8 +93,8 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 //							+ soldItem.getQuantity() + " items");
 			} else {
 				rows.add(soldItem);
-				log.debug("Added " + soldItem.getName() + " quantity of "
-						+ soldItem.getQuantity());
+//				log.debug("Added " + soldItem.getName() + " quantity of "
+//						+ soldItem.getQuantity());
 				fireTableDataChanged();
 				return true;
 			}

@@ -21,29 +21,9 @@
 	<property name="db.url" 	value="jdbc:hsqldb:hsql://localhost/POS"/>
 	<property name="lib.hibernate.dir"   value="${lib.dir}/hibernate"/>
 	
-	<path id="run.classpath">
-	        <pathelement location="${build.classes.dir}"/>
-	        <!-- configuration -->
-	        <pathelement location="${conf.dir}"/>
-	        <fileset dir="${lib.dir}">
-	            <include name="*.jar"/>
-	        </fileset>
 
-	        <fileset dir="${lib.hibernate.dir}">
-	             <include name="*.jar"/>
-	        </fileset>
-	</path>
 	
-	<path id="compile.classpath">
-	        <fileset dir="${lib.dir}">
-	            <include name="*.jar"/>
-	        	<include name="hibernate.cfg.xml"/>
-	        </fileset>
 
-	        <fileset dir="${lib.hibernate.dir}">
-	             <include name="*.jar"/>
-	        </fileset>
-	 </path>
 	
 	<target name="dbmanager" description="Start the HSQLDB manager">
 	        <java
@@ -67,13 +47,7 @@
 
 
 
-	<path id="test.classpath">
-		<pathelement location="${build.classes.dir}"/>
-		<pathelement location="${conf.dir}"/>
-		<fileset dir="lib">
-			<include name="*.jar"/>
-		</fileset>
-	</path>
+
 	
 	<macrodef name="git">
 	    <attribute name="command" />
@@ -132,7 +106,7 @@
 		<!-- Create the time stamp -->
 		<tstamp />
 		<!-- Create the build directory structure used by compile -->
-		<mkdir dir="${build}" />
+		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.test.dir}"/>
 	</target>
 
@@ -184,8 +158,8 @@
 
 	<target name="clean" description="clean up">
 		<!-- Delete the ${build} and ${dist} directory trees -->
-		<delete dir="${build}" />
-		<delete dir="${dist}" />
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
 	</target>
 	
 	<target name="runc" depends="build" description="Run the application (console)">
@@ -207,13 +181,6 @@
 	
 	
 	
-	<path id="test-classpath">
-		<fileset dir="${lib.dir}">
-			<include name="*.jar"/>
-		</fileset>
-	    <pathelement path="${build.classes.dir}/" />
-		<pathelement path="${build.test.dir}/" />
-	</path>
 	
 	<target name="test" depends="build-tests" description="Run the template application">
 
@@ -228,15 +195,71 @@
 
 
 	</target>
-	
+	<path id="run.classpath">
+	        <pathelement location="${build.classes.dir}"/>
+	        <!-- configuration -->
+	        <pathelement location="${conf.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${src.dir}">
+             <include name="hibernate.cfg.xml"/>
+        </fileset>
+        <fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
+	</path>
+	<path id="compile.classpath">
+	        <fileset dir="${lib.dir}">
+	            <include name="*.jar"/>
+	        </fileset>
+        <fileset dir="${src.dir}">
+             <include name="hibernate.cfg.xml"/>
+        </fileset>
+	        <fileset dir="${lib.hibernate.dir}">
+	             <include name="*.jar"/>
+	        </fileset>
+	 </path>
+	<path id="test.classpath">
+		<pathelement location="${build.classes.dir}"/>
+		<pathelement location="${conf.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${src.dir}">
+             <include name="hibernate.cfg.xml"/>
+        </fileset>
+        <fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
+	</path>
+	<path id="test-classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        	<include name="hibernate.cfg.xml"/>
+        </fileset>
+
+        <fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
+	    <pathelement path="${build.classes.dir}/" />
+		<pathelement path="${build.test.dir}/" />
+	</path>
 	<path id="libs">
-		<fileset dir="${lib.dir}">
-			<include name="*.jar"/>
-		</fileset>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${src.dir}">
+             <include name="hibernate.cfg.xml"/>
+        </fileset>
+        <fileset dir="${lib.hibernate.dir}">
+             <include name="*.jar"/>
+        </fileset>
 	</path>
 	
 	<target name="build-tests" depends="build" description="Build the system">
 		<javac
+			includeantruntime="false"
             srcdir="${test.dir}"
             destdir="${build.test.dir}"
             debug="true"

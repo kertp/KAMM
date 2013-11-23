@@ -25,9 +25,9 @@ public class SubmittedPurchaseTableModelTest {
 	}
 	
 	@Test
-	public void testAddOnePurchase() {
+	public void testAddPurchase() {
 		Date date = new Date();
-		StockItem stockItem = new StockItem(1l, "Lauaviin", "", 5.0, 12);
+		StockItem stockItem = new StockItem(110l, "Lauaviin", "", 5.0, 12);
 		SoldItem soldItem = new SoldItem(stockItem, 1);
 		List <SoldItem>list = new ArrayList<SoldItem>();
 		list.add(soldItem);
@@ -39,7 +39,7 @@ public class SubmittedPurchaseTableModelTest {
 	@Test
 	public void testCorrectDate() {
 		Date date = new Date();
-		StockItem stockItem = new StockItem(1l, "Lauaviin", "", 5.0, 12);
+		StockItem stockItem = new StockItem(109l, "Lauaviin", "", 5.0, 12);
 		SoldItem soldItem = new SoldItem(stockItem, 1);
 		List <SoldItem>list = new ArrayList<SoldItem>();
 		list.add(soldItem);
@@ -53,7 +53,7 @@ public class SubmittedPurchaseTableModelTest {
 	public void testCorrectTime() {
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
-		StockItem stockItem = new StockItem(1l, "Lauaviin", "", 5.0, 12);
+		StockItem stockItem = new StockItem(108l, "Lauaviin", "", 5.0, 12);
 		SoldItem soldItem = new SoldItem(stockItem, 1);
 		List <SoldItem>list = new ArrayList<SoldItem>();
 		list.add(soldItem);

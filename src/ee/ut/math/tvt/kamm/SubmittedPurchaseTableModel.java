@@ -50,8 +50,8 @@ public class SubmittedPurchaseTableModel extends
 
 	public void addItem(final SubmittedPurchase item) {
 		rows.add(item);
-		log.debug("Added " + item.getDate() + " " + item.getTime()
-				+ ". Total: " + item.getTotal());
+//		log.debug("Added " + item.getDate() + " " + item.getTime()
+//				+ ". Total: " + item.getTotal());
 		fireTableDataChanged();
 	}
 

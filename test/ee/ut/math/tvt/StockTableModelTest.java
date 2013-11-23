@@ -21,7 +21,7 @@ public class StockTableModelTest {
 	@Before
 	public void setUp() {
 		table= new StockTableModel();
-		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0, 10);
+		stockItem = new StockItem(106l, "Lauaviin", "hea", 5.0, 10);
 		BasicConfigurator.configure();
 		
 	}
@@ -31,7 +31,7 @@ public class StockTableModelTest {
 	@Test
 	public void testCanHaveSameNames() {  		// testValidateNameUniqueness asemel, sest meil on lubatud
 												// mitu toodet sama nimega.
-		StockItem stockItem2 = new StockItem(2l, "Lauaviin", "jee", 6.0, 15);
+		StockItem stockItem2 = new StockItem(107l, "Lauaviin", "jee", 6.0, 15);
 		table.addItem(stockItem);
 		table.addItem(stockItem2);
 		assertEquals(table.getValueAt(0, 1), table.getValueAt(1, 1));
@@ -40,10 +40,10 @@ public class StockTableModelTest {
 	@Test
 	public void testGetItemByIdWhenItemExists() {
 		table.addItem(stockItem);
-		assertEquals(table.getItemById(1l).toString(), stockItem.toString());
+		assertEquals(table.getItemById(106l).toString(), stockItem.toString());
 	}
 	@Test(expected= NoSuchElementException.class)
 	public void testGetItemByIdWhenThrowsException() {
-		table.getItemById(1l);
+		table.getItemById(106l);
 	}
 }

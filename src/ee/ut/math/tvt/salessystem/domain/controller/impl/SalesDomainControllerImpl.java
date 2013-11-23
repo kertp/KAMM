@@ -24,7 +24,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	private static final Logger log = Logger.getLogger(SalesSystemUI.class);
 	private List<SubmittedPurchase> purchaseList;
 	private List<StockItem> stockItems;
-	HibernateDataService service;
+	private HibernateDataService service;
 	public SalesDomainControllerImpl() {
 		stockItems = new ArrayList<StockItem>();
 		purchaseList = new ArrayList<SubmittedPurchase>();

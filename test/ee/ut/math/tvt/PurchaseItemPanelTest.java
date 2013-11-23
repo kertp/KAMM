@@ -19,16 +19,16 @@ public class PurchaseItemPanelTest {
 
 	private PurchaseItemPanel panel;
 	private SalesSystemModel model;
-	private SalesDomainController dc;
+	private SalesDomainController dc = new SalesDomainControllerImpl();;
 	private JComboBox <ComboItem> menu = new JComboBox <ComboItem>();
 	private ComboItem product;
 	private StockItem item;
 	
 	@Before
-	public void setUp() {
-		dc = new SalesDomainControllerImpl();
+	public void setUp(){
 		model = new SalesSystemModel(dc);
-		item = new StockItem(1l, "Lauaviin", "", 5.0, 99);
+		item = new StockItem(103l, "Lauaviin", "", 5.0, 99);
+		model.getWarehouseTableModel().addItem(item);
 		product =  new ComboItem(item.getName(), String.valueOf(item.getId()));
 		menu.addItem(product);
 		panel = new PurchaseItemPanel(model, menu);
@@ -37,14 +37,24 @@ public class PurchaseItemPanelTest {
 	public void testAutomaticFieldFilling() {
 		menu.setSelectedIndex(1);
 		panel.fillDialogFields();
-		assertEquals(panel.getBarCodeField(), item.getId());
-		assertEquals(panel.getNameField(), item.getName());
-		assertEquals(panel.getPriceField(), item.getPrice());
+		assertEquals(panel.getBarCodeField(), String.valueOf(item.getId()));
+		assertEquals(panel.getNameField(), String.valueOf(item.getName()));
+		assertEquals(panel.getPriceField(), String.valueOf(item.getPrice()));
 	}
 	@Test
 	public void testAddItemWithInvalidQuantity() {
-		panel.setQuantityField("-1");
+		panel.setQuantityField("a");
+		menu.setSelectedIndex(1);
+		panel.fillDialogFields();
 		panel.addItemEventHandler();
-		assertEquals(panel.getModel().getCurrentPurchaseTableModel().getValueAt(0, 4), 1);
+		assertEquals(model.getCurrentPurchaseTableModel().getValueAt(0, 3), 1);
+	}
+	@Test
+	public void testAddItemWithNegativeQuantity() {
+		panel.setQuantityField("-1");
+		menu.setSelectedIndex(1);
+		panel.fillDialogFields();
+		panel.addItemEventHandler();
+		assertEquals(model.getCurrentPurchaseTableModel().getRowCount(), 0);
 	}
 }

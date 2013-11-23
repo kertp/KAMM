@@ -18,8 +18,8 @@ public class PurchaseInfoTableModelTest {
 	@Before
 	public void setUp() {
 		table = new PurchaseInfoTableModel();
-		stockItem = new StockItem(1l, "Lauaviin", "hea", 5.0, 10);
-		stockItem2 = new StockItem(2l, "Pannkook", "", 2.5, 100);
+		stockItem = new StockItem(101l, "Lauaviin", "hea", 5.0, 10);
+		stockItem2 = new StockItem(102l, "Pannkook", "", 2.5, 100);
 	}
 	@Test
 	public void testAddDifferentItemsToCart() {
