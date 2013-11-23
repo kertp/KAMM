@@ -1,119 +1,119 @@
 <project name="KAMM" default="dist" basedir=".">
-	<!-- set global properties for this build -->
-	<property file="build.properties"/>
-	<property name="build.dir" value="${basedir}/build"/>
-	<property name="build.dr" value="${basedir}/build"/>
-	<property name="build.classes.dir" value="${build.dir}/classes"/>
-	<property name="build.test.dir" value="${build.dir}/test"/>
-	<property name="src.dir" value="${basedir}/src"/>
-	<property name="test.dir"   value="${basedir}/test"/>
-	<property name="dist.dir" value="${basedir}/dist"/>
-	<property name="conf.dir" value="${basedir}/etc"/>
-	<property name="doc.dir" value="${build.dir}/doc"/>
-	<property name="test.reports.dir" value="${build.dir}/reports/"/>
+ <!-- set global properties for this build -->
+ <property file="build.properties"/>
+ <property name="build.dir" value="${basedir}/build"/>
+ <property name="build.dr" value="${basedir}/build"/>
+ <property name="build.classes.dir" value="${build.dir}/classes"/>
+ <property name="build.test.dir" value="${build.dir}/test"/>
+ <property name="src.dir" value="${basedir}/src"/>
+ <property name="test.dir"   value="${basedir}/test"/>
+ <property name="dist.dir" value="${basedir}/dist"/>
+ <property name="conf.dir" value="${basedir}/etc"/>
+ <property name="doc.dir" value="${build.dir}/doc"/>
+ <property name="test.reports.dir" value="${build.dir}/reports/"/>
 
-	<property name="lib.dir" value="${basedir}/lib"/>
+ <property name="lib.dir" value="${basedir}/lib"/>
 
-	<!-- database variables -->
-	<property name="data.dir"	value="${basedir}/data"/>
-	<property name="db.file"	value="${data.dir}/POSdb"/>
-	<property name="db.alias"	value="POS"/>
-	<property name="db.url" 	value="jdbc:hsqldb:hsql://localhost/POS"/>
-	<property name="lib.hibernate.dir"   value="${lib.dir}/hibernate"/>
-	
+ <!-- database variables -->
+ <property name="data.dir" value="${basedir}/data"/>
+ <property name="db.file" value="${data.dir}/POSdb"/>
+ <property name="db.alias" value="POS"/>
+ <property name="db.url"  value="jdbc:hsqldb:hsql://localhost/POS"/>
+ <property name="lib.hibernate.dir"   value="${lib.dir}/hibernate"/>
+ 
 
-	
+ 
 
-	
-	<target name="dbmanager" description="Start the HSQLDB manager">
-	        <java
-	            classname="org.hsqldb.util.DatabaseManagerSwing"
-	            classpathref="run.classpath"
-	            fork="yes"
-	        >
-	            <arg line="--user sa --url ${db.url}" />
-	        </java>
-	    </target>
+ 
+ <target name="dbmanager" description="Start the HSQLDB manager">
+         <java
+             classname="org.hsqldb.util.DatabaseManagerSwing"
+             classpathref="run.classpath"
+             fork="yes"
+         >
+             <arg line="--user sa --url ${db.url}" />
+         </java>
+     </target>
 
-	    <target name="startdb" description="Start the HSQLDB with the default params">
-	        <java
-	            classname="org.hsqldb.Server"
-	            classpathref="run.classpath"
-	            fork="yes"
-	        >
-	            <arg line="-database.0 '${db.file}' -dbname.0 '${db.alias}'" /> 
-	        </java>
-	</target>
-
-
+     <target name="startdb" description="Start the HSQLDB with the default params">
+         <java
+             classname="org.hsqldb.Server"
+             classpathref="run.classpath"
+             fork="yes"
+         >
+             <arg line="-database.0 '${db.file}' -dbname.0 '${db.alias}'" /> 
+         </java>
+ </target>
 
 
-	
-	<macrodef name="git">
-	    <attribute name="command" />
-	    <attribute name="options" default="" />
-	    <attribute name="dir" default="" />
-	    <element name="args" optional="true" />
-	    <sequential>
+
+
+ 
+ <macrodef name="git">
+     <attribute name="command" />
+     <attribute name="options" default="" />
+     <attribute name="dir" default="" />
+     <element name="args" optional="true" />
+     <sequential>
             <echo message="git @{command}" />
             <exec executable="git" dir="@{dir}">
                 <arg line="@{command} @{options}" />
                 <args />
             </exec>
-	    </sequential>
+     </sequential>
     </macrodef>
-	
-	 <macrodef name="git-publish">
-	    <attribute name="dir" default = ""/>
-	    <attribute name="options" default="" />
-	    <attribute name="failerror" default="false" />
-	 	<attribute name="files" default="." />
-	    <sequential>
-	    	<input message="Message" addproperty="message"/>
-	    	<echo message="Git commit with message ${message}" />
-	        <git command="commit" dir="@{dir}" options="@{options}">
-	            <args>
-	                    <arg value="-am ${message}" />
-	            </args>
-	        </git>
-	    	<input message="username" addproperty="username"/>
-	    	<input message="password:" addproperty="password">
-	    	    <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
-	    	</input>
-	        <git command="push">
-	            <args>
-	            	<arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
-	            </args>
-	        </git>
-	    </sequential>
+ 
+  <macrodef name="git-publish">
+     <attribute name="dir" default = ""/>
+     <attribute name="options" default="" />
+     <attribute name="failerror" default="false" />
+   <attribute name="files" default="." />
+     <sequential>
+      <input message="Message" addproperty="message"/>
+      <echo message="Git commit with message ${message}" />
+         <git command="commit" dir="@{dir}" options="@{options}">
+             <args>
+                     <arg value="-am ${message}" />
+             </args>
+         </git>
+      <input message="username" addproperty="username"/>
+      <input message="password:" addproperty="password">
+          <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+      </input>
+         <git command="push">
+             <args>
+              <arg value="https://${username}:${password}@github.com/kertp/KAMM.git" />
+             </args>
+         </git>
+     </sequential>
     </macrodef>
-	
-	 <macrodef name="git-tag">
-	    <attribute name="dir" default = ""/>
-	    <attribute name="options" default="" />
-	    <attribute name="failerror" default="false" />
-	 	<attribute name="files" default="." />
-	    <sequential>
-	    	<input message="message" addproperty="message"/>
-	    	<input message="tag" addproperty="tag"/>
-	    	<echo message="Git create tag ${tag} with message ${message}" />
-	        <git command="tag -a ${tag} -m ${message}"></git>
-	    	<git command="push --tags"></git>
-	    </sequential>
+ 
+  <macrodef name="git-tag">
+     <attribute name="dir" default = ""/>
+     <attribute name="options" default="" />
+     <attribute name="failerror" default="false" />
+   <attribute name="files" default="." />
+     <sequential>
+      <input message="message" addproperty="message"/>
+      <input message="tag" addproperty="tag"/>
+      <echo message="Git create tag ${tag} with message ${message}" />
+         <git command="tag -a ${tag} -m ${message}"></git>
+      <git command="push --tags"></git>
+     </sequential>
     </macrodef>
-	
-	<target name="init">
-		<!-- Create the time stamp -->
-		<tstamp />
-		<!-- Create the build directory structure used by compile -->
-		<mkdir dir="${build.dir}" />
-		<mkdir dir="${build.test.dir}"/>
-	</target>
+ 
+ <target name="init">
+  <!-- Create the time stamp -->
+  <tstamp />
+  <!-- Create the build directory structure used by compile -->
+  <mkdir dir="${build.dir}" />
+  <mkdir dir="${build.test.dir}"/>
+ </target>
 
-	<target name="build" description="Build the system">
-		<mkdir dir="${build.dir}"/>
-		<mkdir dir="${build.classes.dir}"/>
-		<javac
+ <target name="build" description="Build the system">
+  <mkdir dir="${build.dir}"/>
+  <mkdir dir="${build.classes.dir}"/>
+  <javac
             srcdir="${src.dir}"
             destdir="${build.classes.dir}"
             debug="true"
@@ -122,160 +122,160 @@
             compiler="modern"
             target="1.7"
             source="1.7"
-			includeantruntime="false">
-			<classpath refid="compile.classpath"/>
-		</javac>
+   includeantruntime="false">
+   <classpath refid="compile.classpath"/>
+  </javac>
 
-	</target>
+ </target>
 
-	<target name="dist" depends="build" description="generate the distribution">
-		<propertyfile file="version.properties" comment="Build Number for ANT.">
-			<entry key="build.revision.number" type="int" operation="+" default="1" />
-		</propertyfile>
-		        <jar destfile="${basedir}\build\jar\kamm.jar">
-			    <fileset dir="${basedir}\build\classes" />
-			    <fileset dir="${basedir}\src" includes="**/*.java"/>
-		        <zipgroupfileset dir="${basedir}\lib" includes="**/*.jar" />
-		            <manifest>
-		                <attribute name="Main-Class" value="ee.ut.math.tvt.kamm.Intro"/>
-		            </manifest>
-		       </jar>
-	</target>
+ <target name="dist" depends="build" description="generate the distribution">
+  <propertyfile file="version.properties" comment="Build Number for ANT.">
+   <entry key="build.revision.number" type="int" operation="+" default="1" />
+  </propertyfile>
+          <jar destfile="${basedir}\build\jar\kamm.jar">
+       <fileset dir="${basedir}\build\classes" />
+       <fileset dir="${basedir}\src" includes="**/*.java"/>
+          <zipgroupfileset dir="${basedir}\lib" includes="**/*.jar" />
+              <manifest>
+                  <attribute name="Main-Class" value="ee.ut.math.tvt.kamm.Intro"/>
+              </manifest>
+         </jar>
+ </target>
 
-	<target name="jrun" description="Run jar file">
-		<java jar="${basedir}\build\jar\kamm.jar" fork="true"/>
-	</target>
-	
-	<target name="run" depends="build" description="Run the template application">
-		<java
-		          classname="ee.ut.math.tvt.kamm.Intro"
-		            classpathref="test.classpath"
-		            fork="yes">
-		          <jvmarg value="-Xdebug" />
-		          <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
-		        </java>
-	</target>
+ <target name="jrun" description="Run jar file">
+  <java jar="${basedir}\build\jar\kamm.jar" fork="true"/>
+ </target>
+ 
+ <target name="run" depends="build" description="Run the template application">
+  <java
+            classname="ee.ut.math.tvt.kamm.Intro"
+              classpathref="test.classpath"
+              fork="yes">
+            <jvmarg value="-Xdebug" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
+          </java>
+ </target>
 
-	<target name="clean" description="clean up">
-		<!-- Delete the ${build} and ${dist} directory trees -->
-		<delete dir="${build.dir}" />
-		<delete dir="${dist.dir}" />
-	</target>
-	
-	<target name="runc" depends="build" description="Run the application (console)">
-		<java classname="ee.ut.math.tvt.kamm.Intro" classpathref="test.classpath" fork="yes">
-			<arg value="console" />
-		</java>
-	</target>
-	
-	
-	<target name="git_commit">
-		<git-publish/>
-	</target>
-	
-	<target name="git_tag">
-		<git-tag/>
-	</target>
-	
-	
-	
-	
-	
-	
-	<target name="test" depends="build-tests" description="Run the template application">
+ <target name="clean" description="clean up">
+  <!-- Delete the ${build} and ${dist} directory trees -->
+  <delete dir="${build.dir}" />
+  <delete dir="${dist.dir[4:30:52 PM] Anti Ingel: }" />
+	 </target>
+	 
+	 <target name="runc" depends="build" description="Run the application (console)">
+	  <java classname="ee.ut.math.tvt.kamm.Intro" classpathref="test.classpath" fork="yes">
+	   <arg value="console" />
+	  </java>
+	 </target>
+	 
+	 
+	 <target name="git_commit">
+	  <git-publish/>
+	 </target>
+	 
+	 <target name="git_tag">
+	  <git-tag/>
+	 </target>
+	 
+	 
+	 
+	 
+	 
+	 
+	 <target name="test" depends="build-tests" description="Run the template application">
 
-		<junit>
-			<classpath refid="test-classpath" />
+	  <junit>
+	   <classpath refid="test-classpath" />
 
-			<formatter type="brief" usefile="false" />
-			<batchtest>
-				<fileset dir="${build.test.dir}" includes="**/*.class" />
-			</batchtest>
-		</junit>
+	   <formatter type="brief" usefile="false" />
+	   <batchtest>
+	    <fileset dir="${build.test.dir}" includes="**/*.class" />
+	   </batchtest>
+	  </junit>
 
 
-	</target>
-	<path id="run.classpath">
-	        <pathelement location="${build.classes.dir}"/>
-	        <!-- configuration -->
-	        <pathelement location="${conf.dir}"/>
-        <fileset dir="${lib.dir}">
-            <include name="*.jar"/>
-        </fileset>
-        <fileset dir="${src.dir}">
-             <include name="hibernate.cfg.xml"/>
-        </fileset>
-        <fileset dir="${lib.hibernate.dir}">
-             <include name="*.jar"/>
-        </fileset>
-	</path>
-	<path id="compile.classpath">
+	 </target>
+	 <path id="run.classpath">
+	         <pathelement location="${build.classes.dir}"/>
+	         <!-- configuration -->
+	         <pathelement location="${conf.dir}"/>
 	        <fileset dir="${lib.dir}">
 	            <include name="*.jar"/>
 	        </fileset>
-        <fileset dir="${src.dir}">
-             <include name="hibernate.cfg.xml"/>
-        </fileset>
+	        <fileset dir="${src.dir}">
+	             <include name="hibernate.cfg.xml"/>
+	        </fileset>
 	        <fileset dir="${lib.hibernate.dir}">
 	             <include name="*.jar"/>
 	        </fileset>
 	 </path>
-	<path id="test.classpath">
-		<pathelement location="${build.classes.dir}"/>
-		<pathelement location="${conf.dir}"/>
-        <fileset dir="${lib.dir}">
-            <include name="*.jar"/>
-        </fileset>
-        <fileset dir="${src.dir}">
-             <include name="hibernate.cfg.xml"/>
-        </fileset>
-        <fileset dir="${lib.hibernate.dir}">
-             <include name="*.jar"/>
-        </fileset>
-	</path>
-	<path id="test-classpath">
-        <fileset dir="${lib.dir}">
-            <include name="*.jar"/>
-        	<include name="hibernate.cfg.xml"/>
-        </fileset>
+	 <path id="compile.classpath">
+	         <fileset dir="${lib.dir}">
+	             <include name="*.jar"/>
+	         </fileset>
+	        <fileset dir="${src.dir}">
+	             <include name="hibernate.cfg.xml"/>
+	        </fileset>
+	         <fileset dir="${lib.hibernate.dir}">
+	              <include name="*.jar"/>
+	         </fileset>
+	  </path>
+	 <path id="test.classpath">
+	  <pathelement location="${build.classes.dir}"/>
+	  <pathelement location="${conf.dir}"/>
+	        <fileset dir="${lib.dir}">
+	            <include name="*.jar"/>
+	        </fileset>
+	        <fileset dir="${src.dir}">
+	             <include name="hibernate.cfg.xml"/>
+	        </fileset>
+	        <fileset dir="${lib.hibernate.dir}">
+	             <include name="*.jar"/>
+	        </fileset>
+	 </path>
+	 <path id="test-classpath">
+	        <fileset dir="${lib.dir}">
+	            <include name="*.jar"/>
+	         <include name="hibernate.cfg.xml"/>
+	        </fileset>
 
-        <fileset dir="${lib.hibernate.dir}">
-             <include name="*.jar"/>
-        </fileset>
-	    <pathelement path="${build.classes.dir}/" />
-		<pathelement path="${build.test.dir}/" />
-	</path>
-	<path id="libs">
-        <fileset dir="${lib.dir}">
-            <include name="*.jar"/>
-        </fileset>
-        <fileset dir="${src.dir}">
-             <include name="hibernate.cfg.xml"/>
-        </fileset>
-        <fileset dir="${lib.hibernate.dir}">
-             <include name="*.jar"/>
-        </fileset>
-	</path>
-	
-	<target name="build-tests" depends="build" description="Build the system">
-		<javac
-			includeantruntime="false"
-            srcdir="${test.dir}"
-            destdir="${build.test.dir}"
-            debug="true"
-            debuglevel="lines,vars,source"
-            encoding="utf-8"
-            compiler="modern"
-            target="1.5"
-            source="1.5"
-        	classpathref="libs"
-        >
-			<classpath>
-				<pathelement path="${build.classes.dir}" />
-			</classpath>
-		</javac>
-	</target>
-	
-	
+	        <fileset dir="${lib.hibernate.dir}">
+	             <include name="*.jar"/>
+	        </fileset>
+	     <pathelement path="${build.classes.dir}/" />
+	  <pathelement path="${build.test.dir}/" />
+	 </path>
+	 <path id="libs">
+	        <fileset dir="${lib.dir}">
+	            <include name="*.jar"/>
+	        </fileset>
+	        <fileset dir="${src.dir}">
+	             <include name="hibernate.cfg.xml"/>
+	        </fileset>
+	        <fileset dir="${lib.hibernate.dir}">
+	             <include name="*.jar"/>
+	        </fileset>
+	 </path>
+	 
+	 <target name="build-tests" depends="build" description="Build the system">
+	  <javac
+	   includeantruntime="false"
+	            srcdir="${test.dir}"
+	            destdir="${build.test.dir}"
+	            debug="true"
+	            debuglevel="lines,vars,source"
+	            encoding="utf-8"
+	            compiler="modern"
+	            target="1.5"
+	            source="1.5"
+	         classpathref="libs"
+	        >
+	   <classpath>
+	    <pathelement path="${build.classes.dir}" />
+	   </classpath>
+	  </javac>
+	 </target>
+	 
+	 
 
-</project>
+	</project>
