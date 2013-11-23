@@ -15,6 +15,7 @@ public class Intro {
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 		final SalesDomainController domainController = new SalesDomainControllerImpl();
+		domainController.getDataFromDatabase();
 
 		if (args.length == 1 && args[0].equals(MODE)) {
 			log.debug("Mode: " + MODE);

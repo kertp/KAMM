@@ -67,6 +67,42 @@ public class PurchaseItemPanel extends JPanel {
 		setEnabled(false);
 	}
 
+	public String getBarCodeField() {
+		return barCodeField.getText();
+	}
+
+	public String getQuantityField() {
+		return quantityField.getText();
+	}
+
+	public String getNameField() {
+		return nameField.getText();
+	}
+
+	public String getPriceField() {
+		return priceField.getText();
+	}
+
+	public void setQuantityField(String str) {
+		quantityField.setText(str);
+	}
+
+	public void setBarCodeField(String str) {
+		barCodeField.setText(str);
+	}
+
+	public void setNameField(String str) {
+		nameField.setText(str);
+	}
+
+	public void setPriceField(String str) {
+		priceField.setText(str);
+	}
+
+	public SalesSystemModel getModel() {
+		return model;
+	}
+
 	// shopping cart pane
 	private JComponent drawBasketPane() {
 

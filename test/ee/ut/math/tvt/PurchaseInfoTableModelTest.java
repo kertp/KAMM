@@ -39,13 +39,6 @@ public class PurchaseInfoTableModelTest {
 		assertEquals(table.getRowCount(), 1);
 	}
 	
-
-//	@Test
-//	public void testAddItemWithInvalidQuantity() {
-//		SoldItem soldItem = new SoldItem(stockItem, -1);
-//		table.addItem(soldItem, stockItem.getQuantity());
-//		assertEquals(table.getValueAt(1, 4), 1);
-//	}
 	@Test
 	public void testHasEnoughInStock() {
 		PurchaseInfoTableModel table = new PurchaseInfoTableModel();

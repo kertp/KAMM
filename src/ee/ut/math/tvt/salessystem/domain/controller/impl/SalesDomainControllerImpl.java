@@ -24,10 +24,14 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	private static final Logger log = Logger.getLogger(SalesSystemUI.class);
 	private List<SubmittedPurchase> purchaseList;
 	private List<StockItem> stockItems;
-	HibernateDataService service = new HibernateDataService();
+	HibernateDataService service;
 	public SalesDomainControllerImpl() {
 		stockItems = new ArrayList<StockItem>();
 		purchaseList = new ArrayList<SubmittedPurchase>();
+	}
+	
+	public void getDataFromDatabase() {
+		service = new HibernateDataService();
 		stockItems.addAll(service.getStockItems());
 		purchaseList.addAll(service.getSubmittedPurchases());
 		for (SubmittedPurchase p : purchaseList) {
