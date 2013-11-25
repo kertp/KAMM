@@ -1,0 +1,9 @@
+2013-11-25 21:54:38,985 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-11-25 21:54:39,713 [main] INFO - 7 items loaded from disk
+2013-11-25 21:54:39,733 [main] INFO - 6 clients loaded from disk
+2013-11-25 21:54:39,802 [main] INFO - 25 Sales loaded from disk
+2013-11-25 21:54:39,839 [main] WARN - [The JGoodies Windows Look and Feel - © 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
+2013-11-25 21:54:40,316 [main] INFO - SalesSystem started
+2013-11-25 21:54:41,642 [AWT-EventQueue-0] INFO - 25 Sales loaded from disk
+2013-11-25 21:54:47,559 [AWT-EventQueue-0] INFO - 7 items loaded from disk
+2013-11-25 21:54:51,488 [AWT-EventQueue-0] INFO - 25 Sales loaded from disk
