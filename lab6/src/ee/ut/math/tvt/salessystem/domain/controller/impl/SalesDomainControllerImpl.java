@@ -7,9 +7,12 @@ import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.util.HibernateUtil;
+
 import java.util.Date;
 import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -53,6 +56,14 @@ public class SalesDomainControllerImpl implements SalesDomainController {
         log.info(clients.size() + " clients loaded from disk");
 
         return clients;
+    }
+    
+    public List<SoldItem> getAllSoldItemsBySale(Sale sale){
+        Query query = session.createQuery("from SoldItem where sale_id = :sale");
+        query.setParameter("sale", sale.getId());
+        List<SoldItem> list = query.list();
+        log.info(list.size() + " clients loaded from disk");
+        return list;
     }
 
     public Client getClient(long id) {

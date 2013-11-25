@@ -28,6 +28,8 @@ public interface SalesDomainController {
     public List<Sale> getAllSales();
 
     public Client getClient(long id);
+    
+    public List<SoldItem> getAllSoldItemsBySale(Sale sale);
 
     public void createStockItem(StockItem stockItem);
 

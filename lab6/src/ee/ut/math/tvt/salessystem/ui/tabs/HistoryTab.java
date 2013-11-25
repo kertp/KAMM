@@ -3,13 +3,16 @@ package ee.ut.math.tvt.salessystem.ui.tabs;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.Client;
 import ee.ut.math.tvt.salessystem.domain.data.Sale;
+import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -124,9 +127,9 @@ public class HistoryTab implements RefreshableTab{
 		System.out.println("Refreshing");
 		List<Sale> sales = domainController.getAllSales();
 		for (Sale sale : sales) {
-			for(SoldItem soldItem : sale.getSoldItems()) {
-				soldItem.setSale(sale);
-			}
+			List<SoldItem> soldItemsList = domainController.getAllSoldItemsBySale(sale);
+			Set<SoldItem> soldItems = new HashSet<SoldItem>(soldItemsList);
+			sale.setSoldItems(soldItems);
 		}
 		this.model.getPurchaseHistoryTableModel().populateWithData(sales);
 	}
