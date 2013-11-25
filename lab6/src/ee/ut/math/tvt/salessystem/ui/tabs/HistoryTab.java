@@ -123,6 +123,11 @@ public class HistoryTab implements RefreshableTab{
 		// TODO Auto-generated method stub
 		System.out.println("Refreshing");
 		List<Sale> sales = domainController.getAllSales();
+		for (Sale sale : sales) {
+			for(SoldItem soldItem : sale.getSoldItems()) {
+				soldItem.setSale(sale);
+			}
+		}
 		this.model.getPurchaseHistoryTableModel().populateWithData(sales);
 	}
 
