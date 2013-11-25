@@ -57,7 +57,7 @@ public class HistoryTab implements RefreshableTab{
 
     private Component drawHistoryGeneralTable() {
 
-        JTable table = new JTable(model.getPurchaseHistoryTableModel());
+        final JTable table = new JTable(model.getPurchaseHistoryTableModel());
         table.getTableHeader().setReorderingAllowed(false);
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -72,7 +72,9 @@ public class HistoryTab implements RefreshableTab{
                 ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                 if (!lsm.isSelectionEmpty()) {
                     int selectedRow = lsm.getMinSelectionIndex();
+                    
                     Sale sale = model.getPurchaseHistoryTableModel().getRow(selectedRow);
+                    System.out.println("Selected is " + sale.getId());
                     historyDetailsTableModel.showSale(sale);
                 }
             }

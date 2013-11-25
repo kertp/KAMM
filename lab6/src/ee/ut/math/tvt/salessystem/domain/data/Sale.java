@@ -90,7 +90,6 @@ public class Sale implements DisplayableItem {
     }
 
     public double getSum() {
-    	System.out.println("Size of list is" + this.getSoldItems().size() + " for " + this.getId());
         double sum = 0.0;
         for (SoldItem item : soldItems) {
             sum = sum + item.getPrice() * ((double) item.getQuantity());

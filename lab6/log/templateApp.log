@@ -1,89 +1,39 @@
-2013-11-25 23:12:33,392 [main] DEBUG - Strating SalesSystem with the Swing UI ..
-2013-11-25 23:12:33,945 [main] INFO - 7 items loaded from disk
-2013-11-25 23:12:33,966 [main] INFO - 6 clients loaded from disk
-2013-11-25 23:12:34,022 [main] INFO - 28 Sales loaded from disk
-2013-11-25 23:12:34,068 [main] WARN - [The JGoodies Windows Look and Feel - © 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
-2013-11-25 23:12:34,847 [main] INFO - SalesSystem started
-2013-11-25 23:12:36,245 [AWT-EventQueue-0] INFO - New sale process started
-2013-11-25 23:12:36,245 [AWT-EventQueue-0] INFO - New purchase started
-2013-11-25 23:12:36,257 [AWT-EventQueue-0] INFO - 6 clients loaded from disk
-2013-11-25 23:12:37,165 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
-2013-11-25 23:12:39,500 [AWT-EventQueue-0] INFO -  -- not enough in stock!
-2013-11-25 23:12:40,473 [AWT-EventQueue-0] DEBUG -   -- there was not enough cargo in warehouse to add item
-2013-11-25 23:12:47,179 [AWT-EventQueue-0] INFO - Sale complete
-2013-11-25 23:12:47,180 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
-Id	Name	Price	Quantity	Sum	
-null	Pähklid	10.0	1	10.0	
-
-2013-11-25 23:12:48,211 [AWT-EventQueue-0] INFO - 29 Sales loaded from disk
-2013-11-25 23:12:48,239 [AWT-EventQueue-0] INFO - 3 clients loaded from disk
-2013-11-25 23:12:48,244 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,248 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,253 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,258 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,265 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,270 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,276 [AWT-EventQueue-0] INFO - 3 clients loaded from disk
-2013-11-25 23:12:48,282 [AWT-EventQueue-0] INFO - 2 clients loaded from disk
-2013-11-25 23:12:48,288 [AWT-EventQueue-0] INFO - 2 clients loaded from disk
-2013-11-25 23:12:48,293 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,298 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,302 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,307 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,312 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,316 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,320 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,324 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,329 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,333 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,337 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,342 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,346 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,350 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,354 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,362 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,368 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,373 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:48,376 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:12:52,772 [AWT-EventQueue-0] INFO - New sale process started
-2013-11-25 23:12:52,772 [AWT-EventQueue-0] INFO - New purchase started
-2013-11-25 23:12:52,780 [AWT-EventQueue-0] INFO - 6 clients loaded from disk
-2013-11-25 23:12:54,090 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
-2013-11-25 23:12:57,070 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-25 23:13:02,150 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-25 23:13:09,571 [AWT-EventQueue-0] INFO - Sale complete
-2013-11-25 23:13:09,572 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
-Id	Name	Price	Quantity	Sum	
-null	22	22.0	11	242.0	
-
-2013-11-25 23:13:10,282 [AWT-EventQueue-0] INFO - 30 Sales loaded from disk
-2013-11-25 23:13:10,286 [AWT-EventQueue-0] INFO - 3 clients loaded from disk
-2013-11-25 23:13:10,290 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,293 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,298 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,303 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,310 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,314 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,318 [AWT-EventQueue-0] INFO - 3 clients loaded from disk
-2013-11-25 23:13:10,321 [AWT-EventQueue-0] INFO - 2 clients loaded from disk
-2013-11-25 23:13:10,324 [AWT-EventQueue-0] INFO - 2 clients loaded from disk
-2013-11-25 23:13:10,328 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,331 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,335 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,338 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,342 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,345 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,349 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,352 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,355 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,359 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,364 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,369 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,374 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,379 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,384 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,389 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,395 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,400 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,405 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-25 23:13:10,416 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:23,639 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-11-25 23:47:24,292 [main] INFO - 7 items loaded from disk
+2013-11-25 23:47:24,315 [main] INFO - 6 clients loaded from disk
+2013-11-25 23:47:24,396 [main] INFO - 30 Sales loaded from disk
+2013-11-25 23:47:24,440 [main] WARN - [The JGoodies Windows Look and Feel - © 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
+2013-11-25 23:47:24,899 [main] INFO - SalesSystem started
+2013-11-25 23:47:26,791 [AWT-EventQueue-0] INFO - 7 items loaded from disk
+2013-11-25 23:47:27,779 [AWT-EventQueue-0] INFO - 30 Sales loaded from disk
+2013-11-25 23:47:27,811 [AWT-EventQueue-0] INFO - 3 clients loaded from disk
+2013-11-25 23:47:27,815 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,819 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,825 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,831 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,836 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,840 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,845 [AWT-EventQueue-0] INFO - 3 clients loaded from disk
+2013-11-25 23:47:27,850 [AWT-EventQueue-0] INFO - 2 clients loaded from disk
+2013-11-25 23:47:27,863 [AWT-EventQueue-0] INFO - 2 clients loaded from disk
+2013-11-25 23:47:27,871 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,879 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,892 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,896 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,902 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,908 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,912 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,917 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,922 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,927 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,931 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,935 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,939 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,943 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,947 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,952 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,956 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,963 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,966 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:27,970 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-25 23:47:28,297 [AWT-EventQueue-0] INFO - 6 clients loaded from disk

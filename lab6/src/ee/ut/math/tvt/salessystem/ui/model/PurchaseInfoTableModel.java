@@ -147,7 +147,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
      * (Used by the history details table in the HistoryTab).
      */
     public void showSale(Sale sale) {
-        this.rows = new ArrayList<SoldItem>(sale.getSoldItems());
+        rows = new ArrayList<SoldItem>(sale.getSoldItems());
         fireTableDataChanged();
     }
     
@@ -159,7 +159,6 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		this.sale = sale;
 	}
 	
-	// OVERRRIDE
 	
 	@Override
     public int getRowCount() {
