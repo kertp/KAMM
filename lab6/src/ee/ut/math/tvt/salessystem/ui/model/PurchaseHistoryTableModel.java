@@ -63,7 +63,6 @@ public class PurchaseHistoryTableModel extends TableModelWithRow<Sale> {
 			buffer.append("\n");
 		}
 		
-		System.out.println(buffer);
         rows.clear();
         rows.addAll(data);
         fireTableDataChanged();
